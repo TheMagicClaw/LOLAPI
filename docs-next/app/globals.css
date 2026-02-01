@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background: white;
+  color: #1f2937;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+@layer components {
+  .card-shadow {
+    @apply shadow-lg hover:shadow-xl transition-shadow;
+  }
+
+  .gradient-purple {
+    @apply bg-gradient-to-r from-purple-600 to-indigo-600;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  .cta-button {
+    @apply inline-block px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+
+  .cta-primary {
+    @apply cta-button bg-gradient-purple text-white hover:shadow-lg hover:scale-105;
+  }
+
+  .cta-secondary {
+    @apply cta-button border-2 border-purple-600 text-purple-600 hover:bg-purple-50;
+  }
+
+  .code-block {
+    @apply bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto font-mono text-sm;
+  }
+}
