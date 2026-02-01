@@ -22,16 +22,16 @@ export default function Header() {
             <Link href="/" className="text-gray-700 hover:text-purple-600 transition">
               Home
             </Link>
-            <Link href="/docs" className="text-gray-700 hover:text-purple-600 transition">
-              Documentation
-            </Link>
             <Link href="/api-browser" className="text-gray-700 hover:text-purple-600 transition">
               API Browser
             </Link>
-            <Link href="/getting-started" className="text-gray-700 hover:text-purple-600 transition">
-              Getting Started
+            <Link href="/examples" className="text-gray-700 hover:text-purple-600 transition">
+              Examples
             </Link>
-            <Link href="/community" className="text-gray-700 hover:text-purple-600 transition">
+            <Link href="/docs" className="text-gray-700 hover:text-purple-600 transition">
+              Documentation
+            </Link>
+            <Link href="/discussions" className="text-gray-700 hover:text-purple-600 transition">
               Community
             </Link>
           </nav>
@@ -73,16 +73,16 @@ export default function Header() {
             <Link href="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
               Home
             </Link>
-            <Link href="/docs" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-              Documentation
-            </Link>
             <Link href="/api-browser" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
               API Browser
             </Link>
-            <Link href="/getting-started" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-              Getting Started
+            <Link href="/examples" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+              Examples
             </Link>
-            <Link href="/community" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+            <Link href="/docs" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+              Documentation
+            </Link>
+            <Link href="/discussions" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
               Community
             </Link>
             <a

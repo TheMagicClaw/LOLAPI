@@ -72,7 +72,7 @@ const cta_cards = [
   {
     title: 'Community',
     description: 'Join discussions, report issues, and contribute',
-    link: '/community',
+    link: '/discussions',
     icon: '🤝',
   },
 ]

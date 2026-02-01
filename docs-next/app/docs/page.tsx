@@ -38,8 +38,8 @@ export default function Docs() {
                   <span>•</span> Risk Scoring Algorithm
                 </li>
               </ul>
-              <a href="#data-format" className="text-purple-600 hover:underline font-semibold">
-                Read Guide →
+              <a href="https://github.com/TheMagicClaw/LOLAPI" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline font-semibold">
+                View on GitHub →
               </a>
             </div>
 
@@ -66,8 +66,8 @@ export default function Docs() {
                   <span>•</span> SIEM Integration
                 </li>
               </ul>
-              <a href="#detection-guide" className="text-purple-600 hover:underline font-semibold">
-                Read Guide →
+              <a href="https://github.com/TheMagicClaw/LOLAPI" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline font-semibold">
+                View on GitHub →
               </a>
             </div>
 
@@ -94,8 +94,8 @@ export default function Docs() {
                   <span>•</span> Process Monitoring
                 </li>
               </ul>
-              <a href="#mitigation-guide" className="text-purple-600 hover:underline font-semibold">
-                Read Guide →
+              <a href="https://github.com/TheMagicClaw/LOLAPI" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline font-semibold">
+                View on GitHub →
               </a>
             </div>
 
@@ -178,7 +178,7 @@ export default function Docs() {
                   <span>•</span> License Information
                 </li>
               </ul>
-              <a href="#faq" className="text-purple-600 hover:underline font-semibold">
+              <a href="/docs/faq" className="text-purple-600 hover:underline font-semibold">
                 Read FAQ →
               </a>
             </div>

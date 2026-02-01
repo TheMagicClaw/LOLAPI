@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 const apis = [
   {
@@ -183,9 +184,9 @@ export default function APIBrowser() {
                         ))}
                       </div>
                     </div>
-                    <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition whitespace-nowrap">
+                    <Link href={`/apis/${api.id}`} className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition whitespace-nowrap inline-block">
                       View Details →
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))
