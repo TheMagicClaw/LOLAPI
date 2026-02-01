@@ -1,0 +1,43 @@
+id: dc269a9a-f8bd-4445-b7b0-656c2846a756
+name: advapi32.dll - RegOpenKeyEx
+category: windows-api
+subcategory: registry-access
+api:
+  namespace: advapi32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/winreg/nf-winreg-regopenkeyexa
+  class: RegOpenKeyEx
+abuse_scenarios:
+- name: Registry manipulation
+  technique_id: T1112
+  description: Access registry keys for persistence or data theft
+  code_snippet: RegOpenKeyEx(HKEY_LOCAL_MACHINE, "Software\\Microsoft\\Windows\\Run",
+    0, KEY_WRITE, &hKey);
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of advapi32.dll - RegOpenKeyEx
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1112
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-api
+- registry-access
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

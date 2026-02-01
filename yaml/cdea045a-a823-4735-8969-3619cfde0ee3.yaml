@@ -1,0 +1,43 @@
+id: cdea045a-a823-4735-8969-3619cfde0ee3
+name: Chrome Extension - webRequest API
+category: browser-extension
+subcategory: network-interception
+api:
+  namespace: chrome.webRequest
+  language: JavaScript
+  documentation: https://developer.chrome.com/docs/extensions/reference/api/webRequest
+  class: onBeforeSendHeaders
+abuse_scenarios:
+- name: Request interception and modification
+  technique_id: T1557.002
+  description: Intercept and modify HTTP requests for credential theft
+  code_snippet: 'chrome.webRequest.onBeforeSendHeaders.addListener(function(details)
+    { /* inject headers */ }, {urls: [''<all_urls>'']});'
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of Chrome Extension - webRequest API
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1557.002
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- browser-extension
+- network-interception
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

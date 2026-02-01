@@ -1,0 +1,55 @@
+id: f4de2c0c-5ff2-4f85-ba3f-908676328776
+name: ADSI - DirectoryEntry Authentication
+category: windows-com
+subcategory: authentication
+api:
+  namespace: System.DirectoryServices
+  language: .NET
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.directoryservices.directoryentry
+  class: DirectoryEntry
+  method: Constructor
+abuse_scenarios:
+- name: Credential validation bypass
+  technique_id: T1110.003
+  description: Validate credentials without network traffic
+  code_snippet: var de = new DirectoryEntry(path, username, password); de.RefreshCache(new[]{"objectClass"});
+    // valid/invalid based on exception
+  detection_difficulty: medium
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of ADSI - DirectoryEntry Authentication via AppLocker
+    or similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of ADSI - DirectoryEntry Authentication
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: emerging
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 60
+references:
+  techniques:
+  - T1110.003
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns: []
+tags:
+- windows_com
+- authentication
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

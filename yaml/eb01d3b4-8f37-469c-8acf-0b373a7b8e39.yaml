@@ -1,0 +1,54 @@
+id: eb01d3b4-8f37-469c-8acf-0b373a7b8e39
+name: System.Reflection.Emit.DynamicMethod
+category: windows-dotnet-api
+subcategory: code-execution
+api:
+  namespace: System.Reflection.Emit
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.reflection.emit.dynamicmethod
+  class: DynamicMethod
+  method: Constructor
+abuse_scenarios:
+- name: Dynamic IL generation
+  technique_id: T1027.011
+  description: Generate IL bytecode at runtime to evade static analysis
+  code_snippet: var dm = new DynamicMethod("Invoke", null, null); dm.GetILGenerator().Emit(...);
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of System.Reflection.Emit.DynamicMethod via AppLocker
+    or similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of System.Reflection.Emit.DynamicMethod
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: emerging
+  ease_of_abuse: hard
+  likelihood_in_real_attacks: 45
+references:
+  techniques:
+  - T1027.011
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns: []
+tags:
+- windows_dotnet_api
+- code_execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

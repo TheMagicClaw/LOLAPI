@@ -1,0 +1,57 @@
+id: cc284455-1499-4d20-bf6e-86fd1070fe61
+name: System.IO.File.WriteAllBytes
+category: windows-dotnet-api
+subcategory: file-operations
+api:
+  namespace: System.IO
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.io.file.writeallbytes
+  class: File
+  method: WriteAllBytes
+abuse_scenarios:
+- name: Malware payload drop
+  technique_id: T1105
+  description: Write payload to disk for execution
+  code_snippet: File.WriteAllBytes("C:\\temp\\payload.exe", payloadBytes);
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of System.IO.File.WriteAllBytes via AppLocker or similar
+    controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of System.IO.File.WriteAllBytes
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 90
+references:
+  techniques:
+  - T1105
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_dotnet_api
+- file_operations
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

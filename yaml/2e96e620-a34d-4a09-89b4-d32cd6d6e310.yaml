@@ -1,0 +1,44 @@
+id: 2e96e620-a34d-4a09-89b4-d32cd6d6e310
+name: WMI - Win32_Service.Create
+category: windows-com
+subcategory: persistence
+api:
+  namespace: WbemScripting
+  language: COM
+  documentation: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/create-method-in-class-win32-service
+  class: SWbemServices
+  method: ExecMethod
+abuse_scenarios:
+- name: Service-based persistence
+  technique_id: T1543.003
+  description: Create Windows service for persistence
+  code_snippet: Get-WmiObject Win32_Service -Filter "Name='NewService'" | Invoke-WmiMethod
+    -Name Create -ArgumentList "NewService","C:\\malware.exe"
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of WMI - Win32_Service.Create
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1543.003
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-com
+- persistence
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

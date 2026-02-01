@@ -1,0 +1,58 @@
+id: 7f291458-2178-4c4c-be2a-b4235f78db46
+name: Microsoft.Win32.Registry.SetValue
+category: windows-dotnet-api
+subcategory: persistence
+api:
+  namespace: Microsoft.Win32
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/microsoft.win32.registry.setvalue
+  class: Registry
+  method: SetValue
+abuse_scenarios:
+- name: Registry persistence
+  technique_id: T1547.001
+  description: Persist malware via RunOnce or Run keys
+  code_snippet: Registry.SetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run",
+    "Malware", "C:\\malware.exe");
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of Microsoft.Win32.Registry.SetValue via AppLocker
+    or similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of Microsoft.Win32.Registry.SetValue
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1547.001
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_dotnet_api
+- persistence
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

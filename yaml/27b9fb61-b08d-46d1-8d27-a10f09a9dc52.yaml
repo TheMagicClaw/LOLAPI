@@ -1,0 +1,58 @@
+id: 27b9fb61-b08d-46d1-8d27-a10f09a9dc52
+name: System.Net.ServicePointManager.ServerCertificateValidationCallback
+category: windows-dotnet-api
+subcategory: evasion
+api:
+  namespace: System.Net
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.servicepointmanager.servercertificatevalidationcallback
+  class: ServicePointManager
+  method: ServerCertificateValidationCallback
+abuse_scenarios:
+- name: SSL certificate bypass
+  technique_id: T1557.002
+  description: Disable SSL/TLS certificate validation for MITM
+  code_snippet: ServicePointManager.ServerCertificateValidationCallback = (s, c, ch,
+    ssl) => true;
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of System.Net.ServicePointManager.ServerCertificateValidationCallback
+    via AppLocker or similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of System.Net.ServicePointManager.ServerCertificateValidationCallback
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: emerging
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 75
+references:
+  techniques:
+  - T1557.002
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_dotnet_api
+- evasion
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

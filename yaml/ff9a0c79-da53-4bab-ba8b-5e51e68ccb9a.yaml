@@ -1,0 +1,57 @@
+id: ff9a0c79-da53-4bab-ba8b-5e51e68ccb9a
+name: System.Diagnostics.Process.Start
+category: windows-dotnet-api
+subcategory: process-execution
+api:
+  namespace: System.Diagnostics
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process.start
+  class: Process
+  method: Start
+abuse_scenarios:
+- name: Direct command execution
+  technique_id: T1059.001
+  description: Execute arbitrary commands without a parent shell
+  code_snippet: Process.Start("cmd.exe", "/c powershell.exe -nop -w hidden -c ...");
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of System.Diagnostics.Process.Start via AppLocker or
+    similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of System.Diagnostics.Process.Start
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 95
+references:
+  techniques:
+  - T1059.001
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_dotnet_api
+- process_execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

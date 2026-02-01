@@ -1,0 +1,41 @@
+id: 3a2b6839-4923-4f16-ac2d-49e3f3d09ae7
+name: VBScript - Execute Method
+category: script-engine
+subcategory: code-execution
+api:
+  namespace: VBScript
+  language: VBScript
+  documentation: https://learn.microsoft.com/en-us/previous-versions/t0aew7h6(v=vs.85)
+abuse_scenarios:
+- name: Living off the land script execution
+  technique_id: T1059.005
+  description: Execute VBScript from command line
+  code_snippet: cscript.exe /nologo script.vbs
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of VBScript - Execute Method
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1059.005
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- script-engine
+- code-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

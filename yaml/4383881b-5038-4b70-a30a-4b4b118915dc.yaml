@@ -1,0 +1,41 @@
+id: 4383881b-5038-4b70-a30a-4b4b118915dc
+name: Python - os.system/subprocess
+category: script-engine
+subcategory: process-execution
+api:
+  namespace: os, subprocess
+  language: Python 3.x
+  documentation: https://docs.python.org/3/library/subprocess.html
+abuse_scenarios:
+- name: Command execution via py.exe
+  technique_id: T1059.009
+  description: Execute system commands via Python on Windows
+  code_snippet: python.exe -c "import subprocess; subprocess.call('whoami', shell=True)"
+  detection_difficulty: easy
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of Python - os.system/subprocess
+  feasibility: easy
+risk:
+  severity: medium
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1059.009
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- script-engine
+- process-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

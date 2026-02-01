@@ -1,0 +1,42 @@
+id: 2c20164f-9ce6-4934-a30b-8f21b612457f
+name: AWS EC2 Metadata Service
+category: cloud-metadata
+subcategory: token-theft
+api:
+  namespace: AWS
+  language: HTTP
+  documentation: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html
+  class: EC2 Metadata Service
+abuse_scenarios:
+- name: IAM credential theft
+  technique_id: T1552.001
+  description: Access 169.254.169.254 to steal temporary credentials
+  code_snippet: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of AWS EC2 Metadata Service
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1552.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- cloud-metadata
+- token-theft
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

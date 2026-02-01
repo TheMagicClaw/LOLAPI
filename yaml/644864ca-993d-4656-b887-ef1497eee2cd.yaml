@@ -1,0 +1,42 @@
+id: 644864ca-993d-4656-b887-ef1497eee2cd
+name: PowerShell - Reflection Abuse
+category: script-engine
+subcategory: code-execution
+api:
+  namespace: System.Reflection
+  language: PowerShell 5.0+
+  documentation: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_reflection
+abuse_scenarios:
+- name: Bypass execution policies
+  technique_id: T1027.011
+  description: Use .NET reflection to execute code bypassing PowerShell restrictions
+  code_snippet: '[Reflection.Assembly]::LoadWithPartialName(''System.Reflection'');
+    $a = New-Object System.Reflection.Assembly'
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of PowerShell - Reflection Abuse
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1027.011
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- script-engine
+- code-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

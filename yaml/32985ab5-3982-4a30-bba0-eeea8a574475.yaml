@@ -1,0 +1,43 @@
+id: 32985ab5-3982-4a30-bba0-eeea8a574475
+name: Chrome Extension - storage.sync API
+category: browser-extension
+subcategory: data-exfiltration
+api:
+  namespace: chrome.storage
+  language: JavaScript
+  documentation: https://developer.chrome.com/docs/extensions/reference/api/storage
+  class: storage.sync
+abuse_scenarios:
+- name: OAuth token theft
+  technique_id: T1528
+  description: Steal OAuth tokens from browser storage
+  code_snippet: chrome.storage.sync.get(['oauth_token'], function(result) { exfiltrate(result.oauth_token);
+    });
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of Chrome Extension - storage.sync API
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1528
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- browser-extension
+- data-exfiltration
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

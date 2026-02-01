@@ -1,0 +1,58 @@
+id: c79147c1-8a55-42be-8a3f-6489322f0989
+name: System.Reflection.Assembly.Load
+category: windows-dotnet-api
+subcategory: code-execution
+api:
+  namespace: System.Reflection
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.reflection.assembly.load
+  class: Assembly
+  method: Load
+abuse_scenarios:
+- name: In-memory code execution
+  technique_id: T1027.011
+  description: Load and execute .NET assembly from memory without touching disk
+  code_snippet: var asm = Assembly.Load(assemblyBytes); asm.GetType("Namespace.Class").GetMethod("Method").Invoke(null,
+    null);
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of System.Reflection.Assembly.Load via AppLocker or
+    similar controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of System.Reflection.Assembly.Load
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: emerging
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 72
+references:
+  techniques:
+  - T1027.011
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_dotnet_api
+- code_execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

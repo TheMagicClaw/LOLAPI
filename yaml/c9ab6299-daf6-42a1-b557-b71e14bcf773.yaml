@@ -1,0 +1,42 @@
+id: c9ab6299-daf6-42a1-b557-b71e14bcf773
+name: GCP - Compute Metadata Service
+category: cloud-metadata
+subcategory: token-theft
+api:
+  namespace: GCP
+  language: HTTP
+  documentation: https://cloud.google.com/docs/metadata/overview
+  class: Compute Metadata
+abuse_scenarios:
+- name: Service account key theft
+  technique_id: T1552.001
+  description: Access GCP service account keys from metadata endpoint
+  code_snippet: curl http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity
+  detection_difficulty: easy
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of GCP - Compute Metadata Service
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1552.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- cloud-metadata
+- token-theft
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

@@ -1,0 +1,42 @@
+id: af95bf9c-514f-4f3d-8a72-9a25e8a4072a
+name: Azure AD - Managed Identity Tokens
+category: cloud-metadata
+subcategory: token-theft
+api:
+  namespace: Azure
+  language: HTTP
+  documentation: https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview
+  class: Managed Identity
+abuse_scenarios:
+- name: Service account privilege escalation
+  technique_id: T1548.004
+  description: Steal managed identity tokens for privilege escalation
+  code_snippet: curl http://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com
+  detection_difficulty: easy
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of Azure AD - Managed Identity Tokens
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1548.004
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- cloud-metadata
+- token-theft
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

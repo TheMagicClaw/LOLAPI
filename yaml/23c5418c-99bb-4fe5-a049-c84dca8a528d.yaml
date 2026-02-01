@@ -1,0 +1,44 @@
+id: 23c5418c-99bb-4fe5-a049-c84dca8a528d
+name: System.ComponentModel.TypeConverter
+category: windows-dotnet-api
+subcategory: code-execution
+api:
+  namespace: System.ComponentModel
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.typeconverter
+  class: TypeConverter
+  method: ConvertFromString
+abuse_scenarios:
+- name: Deserialization gadget
+  technique_id: T1027.011
+  description: Abuse type conversion for RCE via deserialization
+  code_snippet: var converter = TypeDescriptor.GetConverter(typeof(InstanceDescriptor));
+    var obj = converter.ConvertFromString(gadgetPayload);
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of System.ComponentModel.TypeConverter
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1027.011
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-dotnet-api
+- code-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

@@ -1,0 +1,43 @@
+id: 00986378-8061-45f3-97d3-914b37e679f8
+name: kernel32.dll - VirtualAllocEx + WriteProcessMemory
+category: windows-api
+subcategory: process-injection
+api:
+  namespace: kernel32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex
+  class: VirtualAllocEx, WriteProcessMemory
+abuse_scenarios:
+- name: Process injection
+  technique_id: T1055.001
+  description: Allocate memory in remote process and write shellcode
+  code_snippet: VirtualAllocEx(hProcess, NULL, size, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+    WriteProcessMemory(hProcess, addr, shellcode, size, NULL);
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of kernel32.dll - VirtualAllocEx + WriteProcessMemory
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1055.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-api
+- process-injection
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

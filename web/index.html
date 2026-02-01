@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOLAPI - Living Off The Land APIs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+        
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 10px 5px 0;
+            font-size: 0.9em;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .card-stat {
+            font-size: 2em;
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .category-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid #667eea;
+        }
+        
+        .category-box:hover {
+            background: #f8f9ff;
+            border-left-color: #764ba2;
+        }
+        
+        .category-count {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .category-name {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        .cta-button.primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .cta-button.primary:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .features h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 1.5em;
+            min-width: 30px;
+        }
+        
+        .feature-text h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .notice {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 LOLAPI</h1>
+            <p>Living Off The Land APIs</p>
+            <p>Catalog of weaponized legitimate system APIs</p>
+            
+            <div style="margin-top: 20px;">
+                <span class="badge">📦 29 APIs</span>
+                <span class="badge">🛡️ Detection Strategies</span>
+                <span class="badge">🔥 High-Impact</span>
+                <span class="badge">🎓 MITRE ATT&CK</span>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <a href="#docs" class="cta-button">View Docs</a>
+                <a href="https://github.com/magicsword-io/LOLAPI" class="cta-button primary">GitHub</a>
+            </div>
+        </header>
+        
+        <div class="notice">
+            <strong>🔬 MVP Status:</strong> This is the initial public release. We're actively expanding coverage and accepting community contributions.
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">29</div>
+                <div class="stat-label">High-Impact APIs</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">45+</div>
+                <div class="stat-label">Abuse Scenarios</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Open Source</div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>📋 Coverage by Category</h2>
+            
+            <div class="category-grid">
+                <div class="category-box">
+                    <div class="category-count">10</div>
+                    <div class="category-name">Windows .NET</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">6</div>
+                    <div class="category-name">Windows COM</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">3</div>
+                    <div class="category-name">Windows API</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">2</div>
+                    <div class="category-name">Browser Ext</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">3</div>
+                    <div class="category-name">Cloud Metadata</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">3</div>
+                    <div class="category-name">Script Engines</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-count">2</div>
+                    <div class="category-name">Miscellaneous</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <h2>✨ Key Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h4>Structured Catalog</h4>
+                        <p>YAML-based entries with schema validation</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-text">
+                        <h4>Abuse Scenarios</h4>
+                        <p>Real code examples with attack context</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-text">
+                        <h4>Detection Strategies</h4>
+                        <p>Behavioral, forensic, and log-based signals</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h4>Risk Scoring</h4>
+                        <p>Quantified severity × prevalence × ease</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🎓</div>
+                    <div class="feature-text">
+                        <h4>MITRE ATT&CK</h4>
+                        <p>Linked to tactics and techniques</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div class="feature-text">
+                        <h4>Community-Driven</h4>
+                        <p>Open for contributions and improvements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-grid">
+            <div class="card">
+                <h3>📚 Getting Started</h3>
+                <p>Learn how to explore and use the LOLAPI catalog.</p>
+                <a href="docs/README.md" class="cta-button">Read Docs</a>
+            </div>
+            
+            <div class="card">
+                <h3>🤝 Contributing</h3>
+                <p>Add new APIs and detection strategies to LOLAPI.</p>
+                <a href="docs/CONTRIBUTING.md" class="cta-button">Contribute</a>
+            </div>
+            
+            <div class="card">
+                <h3>🔐 Detection Guide</h3>
+                <p>Practical strategies for detecting LOTL abuse.</p>
+                <a href="docs/DETECTION-GUIDE.md" class="cta-button">Learn</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>LOLAPI is maintained by <a href="https://github.com/magicsword-io" style="color: white; text-decoration: underline;">magicsword-io</a></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Catalog of legitimate system APIs weaponized for attack</p>
+        </footer>
+    </div>
+</body>
+</html>

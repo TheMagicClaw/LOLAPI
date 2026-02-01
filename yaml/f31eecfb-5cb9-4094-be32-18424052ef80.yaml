@@ -1,0 +1,43 @@
+id: f31eecfb-5cb9-4094-be32-18424052ef80
+name: ntdll.dll - NtCreateFile
+category: windows-api
+subcategory: file-operations
+api:
+  namespace: ntdll.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntcreatefile
+  class: NtCreateFile
+abuse_scenarios:
+- name: Bypass file access controls
+  technique_id: T1202
+  description: Use low-level API to bypass file access restrictions
+  code_snippet: NtCreateFile(&fileHandle, SYNCHRONIZE, &objAttr, &ioStatus, NULL,
+    0, FILE_SHARE_READ, FILE_OPEN, FILE_SYNCHRONOUS_IO_ALERT, NULL, 0);
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of ntdll.dll - NtCreateFile
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1202
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-api
+- file-operations
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

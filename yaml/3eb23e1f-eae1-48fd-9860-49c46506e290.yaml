@@ -1,0 +1,44 @@
+id: 3eb23e1f-eae1-48fd-9860-49c46506e290
+name: System.Diagnostics.ProcessStartInfo
+category: windows-dotnet-api
+subcategory: process-execution
+api:
+  namespace: System.Diagnostics
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo
+  class: ProcessStartInfo
+  method: Constructor
+abuse_scenarios:
+- name: Stealth command execution
+  technique_id: T1036.001
+  description: Execute hidden processes without window display
+  code_snippet: var psi = new ProcessStartInfo("cmd.exe", "/c whoami"); psi.WindowStyle
+    = ProcessWindowStyle.Hidden; Process.Start(psi);
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of System.Diagnostics.ProcessStartInfo
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1036.001
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-dotnet-api
+- process-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

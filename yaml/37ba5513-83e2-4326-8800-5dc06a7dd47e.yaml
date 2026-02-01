@@ -1,0 +1,44 @@
+id: 37ba5513-83e2-4326-8800-5dc06a7dd47e
+name: System.Runtime.InteropServices.Marshal
+category: windows-dotnet-api
+subcategory: code-execution
+api:
+  namespace: System.Runtime.InteropServices
+  language: .NET 1.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal
+  class: Marshal
+  method: GetDelegateForFunctionPointer
+abuse_scenarios:
+- name: Direct syscall execution
+  technique_id: T1547.014
+  description: Execute native code from managed .NET
+  code_snippet: var funcPtr = Marshal.GetFunctionPointerForDelegate(new Func<int>(NativeMethod));
+    var func = Marshal.GetDelegateForFunctionPointer<Func<int>>(funcPtr);
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection based on API patterns
+mitigation:
+- category: monitoring
+  description: Monitor usage of System.Runtime.InteropServices.Marshal
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1547.014
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-dotnet-api
+- code-execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true

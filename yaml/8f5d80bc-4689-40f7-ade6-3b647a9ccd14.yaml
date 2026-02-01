@@ -1,0 +1,58 @@
+id: 8f5d80bc-4689-40f7-ade6-3b647a9ccd14
+name: WMI - Win32_Process.Create
+category: windows-com
+subcategory: process-execution
+api:
+  namespace: WbemScripting
+  language: COM
+  documentation: https://learn.microsoft.com/en-us/windows/win32/cimwin32prov/create-method-in-class-win32-process
+  class: SWbemServices
+  method: ExecMethod
+abuse_scenarios:
+- name: Remote/local code execution
+  technique_id: T1047
+  description: Execute arbitrary commands via WMI
+  code_snippet: Get-WmiObject Win32_Process -ComputerName target -Credential $cred
+    | Invoke-WmiMethod -Name Create -ArgumentList "cmd.exe"
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  capability: Behavior-based
+  effectiveness: medium
+  notes: Behavioral detection based on process tree and API patterns
+- vendor: Splunk
+  capability: Event correlation
+  effectiveness: medium
+  notes: Correlate process events with network activity
+mitigation:
+- category: policy
+  description: Block execution of WMI - Win32_Process.Create via AppLocker or similar
+    controls
+  feasibility: medium
+- category: monitoring
+  description: Alert on unusual usage of WMI - Win32_Process.Create
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 80
+references:
+  techniques:
+  - T1047
+  tools:
+  - Cobalt Strike
+  - Empire
+  - Mimikatz
+  campaigns:
+  - name: Emotet
+    year: 2023
+    source: https://...
+tags:
+- windows_com
+- process_execution
+- lotl
+author: magicsword-io
+created: '2026-01-31'
+verified: true
