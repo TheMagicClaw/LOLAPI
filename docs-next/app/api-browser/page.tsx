@@ -24,16 +24,38 @@ export default function APIBrowser() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Load APIs from the API route
+  // Load APIs from static JSON file (for GitHub Pages) or API route (for server)
   useEffect(() => {
     const fetchAPIs = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/apis')
-        if (!response.ok) {
-          throw new Error('Failed to fetch APIs')
+        let data = null
+        let response = null
+
+        // First, try to fetch the static JSON file (works on GitHub Pages)
+        try {
+          response = await fetch('/api-data.json')
+          if (response.ok) {
+            data = await response.json()
+            console.log('Loaded APIs from static JSON file')
+          }
+        } catch (err) {
+          console.log('Static JSON file not available, trying API route...')
         }
-        const data = await response.json()
+
+        // Fallback to API route if static file not available
+        if (!data) {
+          response = await fetch('/api/apis')
+          if (response.ok) {
+            data = await response.json()
+            console.log('Loaded APIs from API route')
+          }
+        }
+
+        if (!data || !response?.ok) {
+          throw new Error('Failed to fetch APIs from both sources')
+        }
+
         setApis(data.data || [])
 
         // Extract unique categories from loaded APIs

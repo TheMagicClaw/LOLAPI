@@ -21,21 +21,30 @@ try {
 // Paths
 const yamlDir = path.join(__dirname, '../yaml');
 const outputFile = path.join(__dirname, '../docs-next/lib/api-data.ts');
+const publicDir = path.join(__dirname, '../docs-next/public');
+const jsonOutputFile = path.join(publicDir, 'api-data.json');
 
 // Category mapping
 const categoryMap = {
   'windows-api': 'Windows API',
   'windows-com': 'Windows COM',
+  'windows-com-api': 'Windows COM',
   'windows-net': 'Windows .NET',
+  'windows-dotnet-api': 'Windows .NET',
   'native-api': 'Native APIs',
+  'windows-native-api': 'Native APIs',
   'browser-ext': 'Browser Ext',
+  'browser-extension': 'Browser Ext',
   'cloud-services': 'Cloud Services',
+  'cloud-metadata': 'Cloud Services',
   'web-api': 'Web APIs',
   'macos-api': 'macOS API',
   'linux-api': 'Linux API',
   'mobile-api': 'Mobile API',
   'powershell': 'PowerShell',
   'scripting': 'Scripting',
+  'script-engine': 'Scripting',
+  'script-engine-api': 'Scripting',
 };
 
 // Risk mapping
@@ -103,3 +112,19 @@ export const TOTAL_API_COUNT = ${apis.length};
 
 fs.writeFileSync(outputFile, tsContent, 'utf-8');
 console.log(`Generated ${outputFile}`);
+
+// Generate JSON file for static export
+// Create public directory if it doesn't exist
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+  console.log(`Created ${publicDir}`);
+}
+
+const jsonContent = {
+  success: true,
+  count: apis.length,
+  data: apis,
+};
+
+fs.writeFileSync(jsonOutputFile, JSON.stringify(jsonContent, null, 2), 'utf-8');
+console.log(`Generated ${jsonOutputFile}`);

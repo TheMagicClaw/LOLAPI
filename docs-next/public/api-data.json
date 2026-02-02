@@ -1,0 +1,510 @@
+{
+  "success": true,
+  "count": 50,
+  "data": [
+    {
+      "id": "92c77267-2cf0-4931-a217-3203d2fd6428",
+      "name": "access.Application COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1203"
+      ],
+      "description": "Create and execute Access macros for code execution"
+    },
+    {
+      "id": "f4de2c0c-5ff2-4f85-ba3f-908676328776",
+      "name": "ADSI - DirectoryEntry Authentication",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1110.003"
+      ],
+      "description": "Validate credentials without network traffic"
+    },
+    {
+      "id": "dc269a9a-f8bd-4445-b7b0-656c2846a756",
+      "name": "advapi32.dll - RegOpenKeyEx",
+      "category": "Windows API",
+      "risk": "High",
+      "techniques": [
+        "T1112"
+      ],
+      "description": "Access registry keys for persistence or data theft"
+    },
+    {
+      "id": "a50512dd-51f2-4111-8875-27e68220d855",
+      "name": "advapi32.dll - RegSetValueEx",
+      "category": "Native APIs",
+      "risk": "High",
+      "techniques": [
+        "T1547.001",
+        "T1562.001"
+      ],
+      "description": "Write to Run/RunOnce registry keys to achieve persistence"
+    },
+    {
+      "id": "2c20164f-9ce6-4934-a30b-8f21b612457f",
+      "name": "AWS EC2 Metadata Service",
+      "category": "Cloud Services",
+      "risk": "Critical",
+      "techniques": [
+        "T1552.001"
+      ],
+      "description": "Access 169.254.169.254 to steal temporary credentials"
+    },
+    {
+      "id": "af95bf9c-514f-4f3d-8a72-9a25e8a4072a",
+      "name": "Azure AD - Managed Identity Tokens",
+      "category": "Cloud Services",
+      "risk": "Critical",
+      "techniques": [
+        "T1548.004"
+      ],
+      "description": "Steal managed identity tokens for privilege escalation"
+    },
+    {
+      "id": "32985ab5-3982-4a30-bba0-eeea8a574475",
+      "name": "Chrome Extension - storage.sync API",
+      "category": "Browser Ext",
+      "risk": "Critical",
+      "techniques": [
+        "T1528"
+      ],
+      "description": "Steal OAuth tokens from browser storage"
+    },
+    {
+      "id": "cdea045a-a823-4735-8969-3619cfde0ee3",
+      "name": "Chrome Extension - webRequest API",
+      "category": "Browser Ext",
+      "risk": "Critical",
+      "techniques": [
+        "T1557.002"
+      ],
+      "description": "Intercept and modify HTTP requests for credential theft"
+    },
+    {
+      "id": "9f0361b2-edcf-4dd4-b507-cc54d7019c47",
+      "name": "Excel.Application COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1137.002"
+      ],
+      "description": "Create malicious Excel macro for code execution"
+    },
+    {
+      "id": "c9ab6299-daf6-42a1-b557-b71e14bcf773",
+      "name": "GCP - Compute Metadata Service",
+      "category": "Cloud Services",
+      "risk": "Critical",
+      "techniques": [
+        "T1552.001"
+      ],
+      "description": "Access GCP service account keys from metadata endpoint"
+    },
+    {
+      "id": "d4f7b037-613f-4778-9ade-408ed11e1466",
+      "name": "kernel32.dll - CreateRemoteThread",
+      "category": "Native APIs",
+      "risk": "Critical",
+      "techniques": [
+        "T1055.001"
+      ],
+      "description": "Execute shellcode in remote process by creating a thread in another process"
+    },
+    {
+      "id": "4ff52a0c-2f93-45d6-87e9-0a5b48426f02",
+      "name": "kernel32.dll - GetProcAddress",
+      "category": "Native APIs",
+      "risk": "High",
+      "techniques": [
+        "T1036.004"
+      ],
+      "description": "Resolve API addresses at runtime to avoid static detection"
+    },
+    {
+      "id": "e72247d0-3c6b-4ae9-aadc-691cfb927593",
+      "name": "kernel32.dll - LoadLibraryA/W",
+      "category": "Native APIs",
+      "risk": "High",
+      "techniques": [
+        "T1574.001",
+        "T1055.001"
+      ],
+      "description": "Load attacker-controlled DLL from writeable path before legitimate module"
+    },
+    {
+      "id": "22e285d7-f098-4e5d-86c4-d9a087669fd4",
+      "name": "kernel32.dll - OpenProcess + ReadProcessMemory",
+      "category": "Native APIs",
+      "risk": "Critical",
+      "techniques": [
+        "T1187"
+      ],
+      "description": "Read memory of lsass.exe to extract cached credentials"
+    },
+    {
+      "id": "00986378-8061-45f3-97d3-914b37e679f8",
+      "name": "kernel32.dll - VirtualAllocEx + WriteProcessMemory",
+      "category": "Windows API",
+      "risk": "Critical",
+      "techniques": [
+        "T1055.001"
+      ],
+      "description": "Allocate memory in remote process and write shellcode"
+    },
+    {
+      "id": "893b19e6-04de-4a73-9300-816c207490f1",
+      "name": "Microsoft.Win32.Registry.CreateSubKey",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1547.001"
+      ],
+      "description": "Create malware entries in Run keys for persistence"
+    },
+    {
+      "id": "7f291458-2178-4c4c-be2a-b4235f78db46",
+      "name": "Microsoft.Win32.Registry.SetValue",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1547.001"
+      ],
+      "description": "Persist malware via RunOnce or Run keys"
+    },
+    {
+      "id": "aa396215-dd31-43ea-ba0b-4003c46f5750",
+      "name": "MSXML.XMLHTTP COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1071.001"
+      ],
+      "description": "Establish HTTP communication via COM instead of managed APIs"
+    },
+    {
+      "id": "983cf6d8-cfd7-4d10-a6ff-874c6c3cd954",
+      "name": "MSXML.XMLHTTP.6.0 COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1105"
+      ],
+      "description": "Fetch remote payloads without certutil or powershell"
+    },
+    {
+      "id": "f31eecfb-5cb9-4094-be32-18424052ef80",
+      "name": "ntdll.dll - NtCreateFile",
+      "category": "Windows API",
+      "risk": "High",
+      "techniques": [
+        "T1202"
+      ],
+      "description": "Use low-level API to bypass file access restrictions"
+    },
+    {
+      "id": "e09f2765-56eb-467d-a22f-6f0f3c86c140",
+      "name": "outlook.Application COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1114.003"
+      ],
+      "description": "Read emails from Outlook and exfiltrate data"
+    },
+    {
+      "id": "644864ca-993d-4656-b887-ef1497eee2cd",
+      "name": "PowerShell - Reflection Abuse",
+      "category": "Scripting",
+      "risk": "High",
+      "techniques": [
+        "T1027.011"
+      ],
+      "description": "Use .NET reflection to execute code bypassing PowerShell restrictions"
+    },
+    {
+      "id": "6dc5ff82-15f2-4fe7-b817-65ebe068c188",
+      "name": "PowerShell - Reflection and .NET Abuse",
+      "category": "Scripting",
+      "risk": "Critical",
+      "techniques": [
+        "T1027.011"
+      ],
+      "description": "Load .NET assemblies and invoke methods without writing to disk"
+    },
+    {
+      "id": "4383881b-5038-4b70-a30a-4b4b118915dc",
+      "name": "Python - os.system/subprocess",
+      "category": "Scripting",
+      "risk": "Medium",
+      "techniques": [
+        "T1059.009"
+      ],
+      "description": "Execute system commands via Python on Windows"
+    },
+    {
+      "id": "93bb263d-30ea-43a7-b9bd-a3ca9744bd9a",
+      "name": "Scripting.FileSystemObject COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1566.001"
+      ],
+      "description": "Download and write malware files to disk"
+    },
+    {
+      "id": "8be4aeb9-fcd5-4f88-81d7-7687616d836b",
+      "name": "Shell.Application COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1059.001"
+      ],
+      "description": "Execute commands via Shell.Application.ShellExecute"
+    },
+    {
+      "id": "23c5418c-99bb-4fe5-a049-c84dca8a528d",
+      "name": "System.ComponentModel.TypeConverter",
+      "category": "Windows .NET",
+      "risk": "Critical",
+      "techniques": [
+        "T1027.011"
+      ],
+      "description": "Abuse type conversion for RCE via deserialization"
+    },
+    {
+      "id": "25a1848d-1b23-4835-a5a1-09f77f91ffd8",
+      "name": "System.Diagnostics.EventLog.WriteEntry",
+      "category": "Windows .NET",
+      "risk": "Medium",
+      "techniques": [
+        "T1562.002"
+      ],
+      "description": "Write fake entries to event log to cover malicious activity"
+    },
+    {
+      "id": "ff9a0c79-da53-4bab-ba8b-5e51e68ccb9a",
+      "name": "System.Diagnostics.Process.Start",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1059.001"
+      ],
+      "description": "Execute arbitrary commands without a parent shell"
+    },
+    {
+      "id": "3eb23e1f-eae1-48fd-9860-49c46506e290",
+      "name": "System.Diagnostics.ProcessStartInfo",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1036.001"
+      ],
+      "description": "Execute hidden processes without window display"
+    },
+    {
+      "id": "cc284455-1499-4d20-bf6e-86fd1070fe61",
+      "name": "System.IO.File.WriteAllBytes",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1105"
+      ],
+      "description": "Write payload to disk for execution"
+    },
+    {
+      "id": "b14c8be4-1d86-48a6-9d5b-7c106b0a9089",
+      "name": "System.IO.Pipes.NamedPipeClientStream",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1570"
+      ],
+      "description": "Connect to named pipes to communicate with other processes/machines"
+    },
+    {
+      "id": "f5d232d8-2790-4e29-8a8a-2d210504a639",
+      "name": "System.Net.Http.HttpClient",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1071.001"
+      ],
+      "description": "Establish HTTP(S) command and control channel"
+    },
+    {
+      "id": "69c46d16-1c46-4588-bbd3-07a9d5265eb5",
+      "name": "System.Net.HttpWebRequest.GetResponse",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1071.001"
+      ],
+      "description": "Establish persistent C2 channel over HTTP"
+    },
+    {
+      "id": "d22f4260-47ed-45e0-b3ed-645f2bece400",
+      "name": "System.Net.Mail.SmtpClient",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1048.003"
+      ],
+      "description": "Use SMTP to send stolen data via email"
+    },
+    {
+      "id": "27b9fb61-b08d-46d1-8d27-a10f09a9dc52",
+      "name": "System.Net.ServicePointManager.ServerCertificateValidationCallback",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1557.002"
+      ],
+      "description": "Disable SSL/TLS certificate validation for MITM"
+    },
+    {
+      "id": "65d06cd3-930c-43b7-a847-33d6260203f3",
+      "name": "System.Net.Sockets.TcpClient",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1086"
+      ],
+      "description": "Establish raw TCP connection for reverse shell"
+    },
+    {
+      "id": "bacad1ef-dc88-4314-a879-ebe7d6ebd608",
+      "name": "System.Net.WebClient",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1105"
+      ],
+      "description": "Download and execute remote payloads"
+    },
+    {
+      "id": "d3a95629-dea8-4bb9-86ee-0d5ee365182e",
+      "name": "System.Net.WebClient.DownloadString",
+      "category": "Windows .NET",
+      "risk": "High",
+      "techniques": [
+        "T1105"
+      ],
+      "description": "Fetch PowerShell code from remote server and execute"
+    },
+    {
+      "id": "c79147c1-8a55-42be-8a3f-6489322f0989",
+      "name": "System.Reflection.Assembly.Load",
+      "category": "Windows .NET",
+      "risk": "Critical",
+      "techniques": [
+        "T1027.011"
+      ],
+      "description": "Load and execute .NET assembly from memory without touching disk"
+    },
+    {
+      "id": "eb01d3b4-8f37-469c-8acf-0b373a7b8e39",
+      "name": "System.Reflection.Emit.DynamicMethod",
+      "category": "Windows .NET",
+      "risk": "Critical",
+      "techniques": [
+        "T1027.011"
+      ],
+      "description": "Generate IL bytecode at runtime to evade static analysis"
+    },
+    {
+      "id": "735f3aa5-cf6a-4093-980f-90d18630e47a",
+      "name": "System.Reflection.MethodInfo.Invoke",
+      "category": "Windows .NET",
+      "risk": "Critical",
+      "techniques": [
+        "T1218.009"
+      ],
+      "description": "Use reflection to invoke methods without direct references"
+    },
+    {
+      "id": "37ba5513-83e2-4326-8800-5dc06a7dd47e",
+      "name": "System.Runtime.InteropServices.Marshal",
+      "category": "Windows .NET",
+      "risk": "Critical",
+      "techniques": [
+        "T1547.014"
+      ],
+      "description": "Execute native code from managed .NET"
+    },
+    {
+      "id": "9a0984a9-fa6c-4267-a73b-ed6e81024e57",
+      "name": "user32.dll - SetWindowsHookEx",
+      "category": "Native APIs",
+      "risk": "High",
+      "techniques": [
+        "T1056.004",
+        "T1546.011"
+      ],
+      "description": "Install WH_KEYBOARD_LL or WH_MOUSE_LL hook to capture user input"
+    },
+    {
+      "id": "3a2b6839-4923-4f16-ac2d-49e3f3d09ae7",
+      "name": "VBScript - Execute Method",
+      "category": "Scripting",
+      "risk": "High",
+      "techniques": [
+        "T1059.005"
+      ],
+      "description": "Execute VBScript from command line"
+    },
+    {
+      "id": "218c9734-e963-4de6-8c5d-50d8ebe49d0d",
+      "name": "WMI - Win32_DCOMApplication",
+      "category": "Windows COM",
+      "risk": "Critical",
+      "techniques": [
+        "T1021.003"
+      ],
+      "description": "Execute commands on remote systems via DCOM"
+    },
+    {
+      "id": "8f5d80bc-4689-40f7-ade6-3b647a9ccd14",
+      "name": "WMI - Win32_Process.Create",
+      "category": "Windows COM",
+      "risk": "Critical",
+      "techniques": [
+        "T1047"
+      ],
+      "description": "Execute arbitrary commands via WMI"
+    },
+    {
+      "id": "2e96e620-a34d-4a09-89b4-d32cd6d6e310",
+      "name": "WMI - Win32_Service.Create",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1543.003"
+      ],
+      "description": "Create Windows service for persistence"
+    },
+    {
+      "id": "6e30f32f-1647-400a-bca5-d2582bd0d060",
+      "name": "Word.Application COM Object",
+      "category": "Windows COM",
+      "risk": "High",
+      "techniques": [
+        "T1137.001"
+      ],
+      "description": "Exploit Word macros for code execution"
+    },
+    {
+      "id": "e7de7ef0-badb-42e2-99dc-7c62a9b5977c",
+      "name": "WScript.Shell COM Object",
+      "category": "Windows COM",
+      "risk": "Critical",
+      "techniques": [
+        "T1059.005",
+        "T1547.001"
+      ],
+      "description": "Execute system commands via WScript.Shell.Exec"
+    }
+  ]
+}
