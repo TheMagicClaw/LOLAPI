@@ -131,7 +131,7 @@ export const API_DATA: CompleteAPI[] = [
       "authentication",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -193,7 +193,7 @@ export const API_DATA: CompleteAPI[] = [
       "token-theft",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -255,7 +255,7 @@ export const API_DATA: CompleteAPI[] = [
       "token-theft",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -317,7 +317,7 @@ export const API_DATA: CompleteAPI[] = [
       "data-exfiltration",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -379,7 +379,7 @@ export const API_DATA: CompleteAPI[] = [
       "network-interception",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -452,7 +452,7 @@ export const API_DATA: CompleteAPI[] = [
       "persistence",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -514,7 +514,7 @@ export const API_DATA: CompleteAPI[] = [
       "token-theft",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -576,7 +576,7 @@ export const API_DATA: CompleteAPI[] = [
       "network-communication",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -648,7 +648,7 @@ export const API_DATA: CompleteAPI[] = [
       "download",
       "c2"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -713,7 +713,7 @@ export const API_DATA: CompleteAPI[] = [
       "registry",
       "persistence"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -786,7 +786,7 @@ export const API_DATA: CompleteAPI[] = [
       "persistence",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -848,7 +848,7 @@ export const API_DATA: CompleteAPI[] = [
       "code-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -928,7 +928,7 @@ export const API_DATA: CompleteAPI[] = [
       "reflection",
       "fileless-malware"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -990,7 +990,7 @@ export const API_DATA: CompleteAPI[] = [
       "process-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1062,7 +1062,7 @@ export const API_DATA: CompleteAPI[] = [
       "file-operations",
       "script"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1134,7 +1134,7 @@ export const API_DATA: CompleteAPI[] = [
       "command-execution",
       "script"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1196,7 +1196,7 @@ export const API_DATA: CompleteAPI[] = [
       "code-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1269,7 +1269,7 @@ export const API_DATA: CompleteAPI[] = [
       "log-manipulation",
       "defense-evasion"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1342,7 +1342,7 @@ export const API_DATA: CompleteAPI[] = [
       "process_execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1404,7 +1404,7 @@ export const API_DATA: CompleteAPI[] = [
       "process-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1477,7 +1477,7 @@ export const API_DATA: CompleteAPI[] = [
       "file_operations",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1548,7 +1548,7 @@ export const API_DATA: CompleteAPI[] = [
       "ipc",
       "lateral-movement"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1621,7 +1621,7 @@ export const API_DATA: CompleteAPI[] = [
       "network_communication",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1692,7 +1692,7 @@ export const API_DATA: CompleteAPI[] = [
       "c2",
       "network"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1762,7 +1762,7 @@ export const API_DATA: CompleteAPI[] = [
       "c2",
       "exfiltration"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -1835,7 +1835,7 @@ export const API_DATA: CompleteAPI[] = [
       "evasion",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1897,7 +1897,7 @@ export const API_DATA: CompleteAPI[] = [
       "network-communication",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -1959,7 +1959,7 @@ export const API_DATA: CompleteAPI[] = [
       "network-communication",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2031,7 +2031,7 @@ export const API_DATA: CompleteAPI[] = [
       "download",
       "rce"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -2104,7 +2104,7 @@ export const API_DATA: CompleteAPI[] = [
       "code_execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2177,7 +2177,7 @@ export const API_DATA: CompleteAPI[] = [
       "code_execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2250,7 +2250,7 @@ export const API_DATA: CompleteAPI[] = [
       "reflection",
       "code-execution"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -2312,7 +2312,7 @@ export const API_DATA: CompleteAPI[] = [
       "code-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2374,7 +2374,7 @@ export const API_DATA: CompleteAPI[] = [
       "code-execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2445,7 +2445,7 @@ export const API_DATA: CompleteAPI[] = [
       "lateral-movement",
       "rce"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -2518,7 +2518,7 @@ export const API_DATA: CompleteAPI[] = [
       "process_execution",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2580,7 +2580,7 @@ export const API_DATA: CompleteAPI[] = [
       "persistence",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2660,7 +2660,7 @@ export const API_DATA: CompleteAPI[] = [
       "script",
       "critical"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -2722,7 +2722,7 @@ export const API_DATA: CompleteAPI[] = [
       "persistence",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2790,7 +2790,7 @@ export const API_DATA: CompleteAPI[] = [
       "macro",
       "code-execution"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -2852,7 +2852,7 @@ export const API_DATA: CompleteAPI[] = [
       "registry-access",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -2941,7 +2941,7 @@ export const API_DATA: CompleteAPI[] = [
       "registry",
       "persistence"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3023,7 +3023,7 @@ export const API_DATA: CompleteAPI[] = [
       "rce",
       "widely-abused"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3097,7 +3097,7 @@ export const API_DATA: CompleteAPI[] = [
       "api-resolution",
       "obfuscation"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3186,7 +3186,7 @@ export const API_DATA: CompleteAPI[] = [
       "dll-hijacking",
       "persistence"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3266,7 +3266,7 @@ export const API_DATA: CompleteAPI[] = [
       "credential-access",
       "critical"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3328,7 +3328,7 @@ export const API_DATA: CompleteAPI[] = [
       "process-injection",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -3390,7 +3390,7 @@ export const API_DATA: CompleteAPI[] = [
       "file-operations",
       "lotl"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-01-31",
     "verified": true
   },
@@ -3458,7 +3458,7 @@ export const API_DATA: CompleteAPI[] = [
       "exfiltration",
       "email"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   },
@@ -3544,7 +3544,7 @@ export const API_DATA: CompleteAPI[] = [
       "hooking",
       "surveillance"
     ],
-    "author": "magicsword-io",
+    "author": "Claw",
     "created": "2026-02-02",
     "verified": true
   }

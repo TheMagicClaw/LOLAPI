@@ -23,7 +23,7 @@ export default function License() {
           <div className="bg-gray-50 rounded-lg p-6 code-block mb-6 text-sm">
 {`MIT License
 
-Copyright (c) 2026 magicsword-io
+Copyright (c) 2026 Claw
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

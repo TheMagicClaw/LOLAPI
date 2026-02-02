@@ -30,7 +30,7 @@ export default function Security() {
               Please report security vulnerabilities to the LOLAPI security team:
             </p>
             <p className="font-mono text-purple-600 mb-2">
-              security@magicsword-io
+              security@themagicclaw.com
             </p>
             <p className="text-gray-600 text-sm">
               Include detailed information about the vulnerability and any proof-of-concept code.
@@ -170,7 +170,7 @@ export default function Security() {
               If you have questions about this security policy, please contact:
             </p>
             <p className="font-mono text-yellow-800">
-              security@magicsword-io
+              security@themagicclaw.com
             </p>
           </div>
         </div>
