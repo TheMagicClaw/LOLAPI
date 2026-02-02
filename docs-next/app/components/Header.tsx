@@ -31,6 +31,9 @@ export default function Header() {
             <Link href="/docs" className="text-gray-700 hover:text-purple-600 transition">
               Documentation
             </Link>
+            <Link href="/about" className="text-gray-700 hover:text-purple-600 transition">
+              About
+            </Link>
             <Link href="/discussions" className="text-gray-700 hover:text-purple-600 transition">
               Community
             </Link>
@@ -81,6 +84,9 @@ export default function Header() {
             </Link>
             <Link href="/docs" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
               Documentation
+            </Link>
+            <Link href="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+              About
             </Link>
             <Link href="/discussions" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
               Community

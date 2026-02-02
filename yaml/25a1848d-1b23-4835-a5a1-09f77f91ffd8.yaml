@@ -1,0 +1,51 @@
+name: System.Diagnostics.EventLog.WriteEntry
+category: windows-dotnet-api
+subcategory: log-manipulation
+api:
+  namespace: System.Diagnostics
+  language: .NET 1.1+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.eventlog.writeentry
+  class: EventLog
+  method: WriteEntry
+abuse_scenarios:
+- name: Log injection/covering tracks
+  technique_id: T1562.002
+  description: Write fake entries to event log to cover malicious activity
+  code_snippet: EventLog.WriteEntry("Application", "Normal-looking event that masks
+    actual activity");
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: SIEM
+  effectiveness: low
+  notes: Difficult to distinguish from legitimate entries
+- vendor: EDR
+  effectiveness: medium
+  notes: Monitor for unusual EventLog.WriteEntry patterns
+mitigation:
+- category: policy
+  description: Restrict EventLog write access
+  feasibility: medium
+- category: monitoring
+  description: Use centralized logging to prevent local tampering
+  feasibility: high
+risk:
+  severity: medium
+  prevalence: low
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 40
+references:
+  techniques:
+  - T1562.002
+  threat_actors:
+  - Advanced APTs
+  malware_families:
+  - Sophisticated malware
+tags:
+- windows-dotnet-api
+- log-manipulation
+- defense-evasion
+id: 25a1848d-1b23-4835-a5a1-09f77f91ffd8
+author: magicsword-io
+created: '2026-02-02'
+verified: true

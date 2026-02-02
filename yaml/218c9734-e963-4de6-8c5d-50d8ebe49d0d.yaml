@@ -1,0 +1,50 @@
+name: WMI - Win32_DCOMApplication
+category: windows-com-api
+subcategory: lateral-movement
+api:
+  namespace: WMI
+  language: PowerShell/VBScript/C#
+  documentation: https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmi-overview
+  class: Win32_DCOMApplication
+abuse_scenarios:
+- name: DCOM-based RCE
+  technique_id: T1021.003
+  description: Execute commands on remote systems via DCOM
+  code_snippet: Get-WmiObject -Class Win32_DCOMApplication | Where-Object { $_.Name
+    -match 'Excel' } | Invoke-WmiMethod
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: medium
+  notes: Monitor for remote WMI method execution
+- vendor: EDR
+  effectiveness: high
+  notes: Behavioral detection of DCOM lateral movement
+mitigation:
+- category: policy
+  description: Restrict DCOM activation
+  feasibility: high
+risk:
+  severity: critical
+  prevalence: medium
+  ease_of_abuse: hard
+  likelihood_in_real_attacks: 70
+references:
+  techniques:
+  - T1021.003
+  threat_actors:
+  - APT28
+  - Lazarus
+  malware_families:
+  - Cobalt Strike
+  tools:
+  - Cobalt Strike
+tags:
+- windows-com-api
+- lateral-movement
+- rce
+id: 218c9734-e963-4de6-8c5d-50d8ebe49d0d
+author: magicsword-io
+created: '2026-02-02'
+verified: true

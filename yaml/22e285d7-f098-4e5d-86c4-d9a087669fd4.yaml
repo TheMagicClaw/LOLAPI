@@ -1,0 +1,58 @@
+name: kernel32.dll - OpenProcess + ReadProcessMemory
+category: windows-native-api
+subcategory: memory-access
+api:
+  namespace: kernel32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess
+  function: OpenProcess / ReadProcessMemory
+abuse_scenarios:
+- name: Credential theft
+  technique_id: T1187
+  description: Read memory of lsass.exe to extract cached credentials
+  code_snippet: 'HANDLE hProcess = OpenProcess(PROCESS_VM_READ, FALSE, lsassPID);
+
+    ReadProcessMemory(hProcess, address, buffer, size, NULL);'
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Event ID 10 - Process Access to lsass.exe
+- vendor: Windows Defender
+  effectiveness: high
+  notes: Behavior detection of lsass access from non-system processes
+mitigation:
+- category: policy
+  description: Enforce Windows Defender Credential Guard
+  feasibility: high
+- category: monitoring
+  description: Monitor OpenProcess calls to lsass.exe
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 95
+references:
+  techniques:
+  - T1187
+  threat_actors:
+  - APT28
+  - APT29
+  - Lazarus
+  malware_families:
+  - Mimikatz
+  - Lsass dumpers
+  tools:
+  - Mimikatz
+  - ProcDump
+  - Comsvcs
+tags:
+- windows-native-api
+- credential-access
+- critical
+id: 22e285d7-f098-4e5d-86c4-d9a087669fd4
+author: magicsword-io
+created: '2026-02-02'
+verified: true

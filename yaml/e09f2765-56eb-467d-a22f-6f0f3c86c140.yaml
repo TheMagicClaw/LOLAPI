@@ -1,0 +1,47 @@
+name: outlook.Application COM Object
+category: windows-com-api
+subcategory: data-exfiltration
+api:
+  namespace: Outlook.Application
+  language: VBScript/C#/PowerShell
+  documentation: https://learn.microsoft.com/en-us/office/vba/api/outlook.application
+  object: Outlook.Application
+abuse_scenarios:
+- name: Email theft and sending
+  technique_id: T1114.003
+  description: Read emails from Outlook and exfiltrate data
+  code_snippet: Set outlook = CreateObject("Outlook.Application") Set folder = outlook.GetNamespace("MAPI").GetDefaultFolder(6)
+    For Each mail In folder.Items ... Send(mail) ... Next
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: EDR
+  effectiveness: medium
+  notes: Monitor Outlook.Application instantiation from non-Office processes
+- vendor: Email gateway
+  effectiveness: high
+  notes: Detect unusual email sending patterns
+mitigation:
+- category: policy
+  description: Restrict COM object creation from scripts
+  feasibility: medium
+risk:
+  severity: high
+  prevalence: low
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 50
+references:
+  techniques:
+  - T1114.003
+  threat_actors:
+  - Advanced APTs
+  malware_families:
+  - Sophisticated spyware
+tags:
+- windows-com-api
+- exfiltration
+- email
+id: e09f2765-56eb-467d-a22f-6f0f3c86c140
+author: magicsword-io
+created: '2026-02-02'
+verified: true

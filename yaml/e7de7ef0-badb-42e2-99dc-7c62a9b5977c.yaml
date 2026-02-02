@@ -1,0 +1,63 @@
+name: WScript.Shell COM Object
+category: windows-com-api
+subcategory: script-execution
+api:
+  namespace: WScript.Shell
+  language: VBScript/JavaScript
+  documentation: https://learn.microsoft.com/en-us/windows/win32/wsh/wscript-shell
+  object: WScript.Shell
+abuse_scenarios:
+- name: Run command via Exec method
+  technique_id: T1059.005
+  description: Execute system commands via WScript.Shell.Exec
+  code_snippet: 'Set shell = CreateObject("WScript.Shell")
+
+    shell.Exec "cmd.exe /c whoami"'
+  detection_difficulty: easy
+  common_in_campaigns: true
+- name: Registry manipulation
+  technique_id: T1547.001
+  description: Modify registry for persistence
+  code_snippet: 'Set shell = CreateObject("WScript.Shell")
+
+    shell.RegWrite "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Malware",
+    "cmd.exe"'
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Monitor script engine process creation
+mitigation:
+- category: policy
+  description: Disable Script Host
+  feasibility: high
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 90
+references:
+  techniques:
+  - T1059.005
+  - T1547.001
+  threat_actors:
+  - APT28
+  - APT29
+  - Lazarus
+  malware_families:
+  - Emotet
+  - ZeuS
+  - TrickBot
+  tools:
+  - Custom scripts
+  - Empire
+tags:
+- windows-com-api
+- command-execution
+- script
+- critical
+id: e7de7ef0-badb-42e2-99dc-7c62a9b5977c
+author: magicsword-io
+created: '2026-02-02'
+verified: true

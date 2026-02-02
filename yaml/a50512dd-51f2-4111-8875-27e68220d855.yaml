@@ -1,0 +1,65 @@
+name: advapi32.dll - RegSetValueEx
+category: windows-native-api
+subcategory: registry-manipulation
+api:
+  namespace: advapi32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/winreg/nf-winreg-regsetvalueexa
+  function: RegSetValueEx
+abuse_scenarios:
+- name: Persistence via registry modification
+  technique_id: T1547.001
+  description: Write to Run/RunOnce registry keys to achieve persistence
+  code_snippet: RegSetValueEx(hKey, "Malware", 0, REG_SZ, (LPBYTE)"C:\\malware.exe",
+    strlen("C:\\malware.exe")+1);
+  detection_difficulty: easy
+  common_in_campaigns: true
+- name: Disable security features
+  technique_id: T1562.001
+  description: Modify Windows Defender or firewall settings
+  code_snippet: RegSetValueEx(hKey, "DisableRealtimeMonitoring", 0, REG_DWORD, (LPBYTE)&dwValue,
+    sizeof(DWORD));
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Event ID 13 - Registry Object Added or Modified
+- vendor: Windows Defender
+  effectiveness: high
+  notes: Behavioral detection of registry tampering
+mitigation:
+- category: policy
+  description: Restrict registry write access via GPO
+  feasibility: high
+- category: monitoring
+  description: Monitor Run/RunOnce registry modifications
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1547.001
+  - T1562.001
+  threat_actors:
+  - APT1
+  - FIN7
+  - Lazarus
+  malware_families:
+  - ZeuS
+  - Emotet
+  - Ransomware (various)
+  tools:
+  - PSExec
+  - PsTools
+tags:
+- windows-native-api
+- registry
+- persistence
+id: a50512dd-51f2-4111-8875-27e68220d855
+author: magicsword-io
+created: '2026-02-02'
+verified: true

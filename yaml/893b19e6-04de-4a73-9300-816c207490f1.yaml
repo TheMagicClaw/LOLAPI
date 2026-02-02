@@ -1,0 +1,47 @@
+name: Microsoft.Win32.Registry.CreateSubKey
+category: windows-dotnet-api
+subcategory: registry-manipulation
+api:
+  namespace: Microsoft.Win32
+  language: .NET 1.1+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/microsoft.win32.registry.createsubkey
+  class: Registry
+  method: CreateSubKey
+abuse_scenarios:
+- name: Persistence via registry subkeys
+  technique_id: T1547.001
+  description: Create malware entries in Run keys for persistence
+  code_snippet: RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+    key.SetValue("Malware", "C:\\malware.exe");
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Event ID 13 - Registry Object Added or Modified
+mitigation:
+- category: policy
+  description: Monitor Run key modifications
+  feasibility: easy
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1547.001
+  threat_actors:
+  - APT1
+  - Lazarus
+  malware_families:
+  - Emotet
+  - Ransomware variants
+tags:
+- windows-dotnet-api
+- registry
+- persistence
+id: 893b19e6-04de-4a73-9300-816c207490f1
+author: magicsword-io
+created: '2026-02-02'
+verified: true

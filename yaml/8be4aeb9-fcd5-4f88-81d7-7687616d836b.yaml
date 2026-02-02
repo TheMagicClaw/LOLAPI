@@ -1,0 +1,52 @@
+name: Shell.Application COM Object
+category: windows-com-api
+subcategory: shell-execution
+api:
+  namespace: Shell.Application
+  language: COM/VBScript/JavaScript
+  documentation: https://learn.microsoft.com/en-us/windows/win32/shell/shell
+  object: Shell.Application
+abuse_scenarios:
+- name: ShellExecute for command execution
+  technique_id: T1059.001
+  description: Execute commands via Shell.Application.ShellExecute
+  code_snippet: 'Set shell = CreateObject("Shell.Application")
+
+    shell.ShellExecute "cmd.exe", "/c malware.exe", "", "open", 1'
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Process creation from script engines (cscript.exe, wscript.exe)
+- vendor: Microsoft Defender
+  effectiveness: high
+  notes: Behavior detection of Shell.Application.ShellExecute
+mitigation:
+- category: policy
+  description: Disable Windows Script Host
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 75
+references:
+  techniques:
+  - T1059.001
+  threat_actors:
+  - APT1
+  - FIN7
+  malware_families:
+  - TrojanDropper variants
+  tools:
+  - Empire
+  - Custom scripts
+tags:
+- windows-com-api
+- command-execution
+- script
+id: 8be4aeb9-fcd5-4f88-81d7-7687616d836b
+author: magicsword-io
+created: '2026-02-02'
+verified: true

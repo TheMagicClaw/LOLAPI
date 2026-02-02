@@ -1,0 +1,62 @@
+name: user32.dll - SetWindowsHookEx
+category: windows-native-api
+subcategory: hooking
+api:
+  namespace: user32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexa
+  function: SetWindowsHookEx
+abuse_scenarios:
+- name: Keyboard/mouse monitoring
+  technique_id: T1056.004
+  description: Install WH_KEYBOARD_LL or WH_MOUSE_LL hook to capture user input
+  code_snippet: HHOOK hHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardProc, hModule,
+    0);
+  detection_difficulty: medium
+  common_in_campaigns: true
+- name: Process manipulation
+  technique_id: T1546.011
+  description: Install WH_GETMESSAGE hook to inject code into other processes
+  code_snippet: HHOOK hHook = SetWindowsHookEx(WH_GETMESSAGE, GetMsgProc, hModule,
+    0);
+  detection_difficulty: hard
+  common_in_campaigns: false
+detection:
+- vendor: Sysmon
+  effectiveness: medium
+  notes: Monitor for SetWindowsHookEx calls from unusual processes
+- vendor: EDR
+  effectiveness: high
+  notes: Behavioral detection of hook installation and message interception
+mitigation:
+- category: code
+  description: Use modern input handling APIs instead of hooks
+  feasibility: medium
+- category: policy
+  description: Restrict SetWindowsHookEx via policy
+  feasibility: medium
+risk:
+  severity: high
+  prevalence: medium
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 60
+references:
+  techniques:
+  - T1056.004
+  - T1546.011
+  threat_actors:
+  - APT28
+  - ZooPark
+  malware_families:
+  - Poison Ivy
+  - RAT variants
+  tools:
+  - Rootkits
+tags:
+- windows-native-api
+- hooking
+- surveillance
+id: 9a0984a9-fa6c-4267-a73b-ed6e81024e57
+author: magicsword-io
+created: '2026-02-02'
+verified: true

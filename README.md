@@ -17,17 +17,17 @@ After organizations deploy WDAC to block LOLBASline binaries, attackers shift to
 
 ## 📊 Coverage
 
-Currently tracking **29 high-impact APIs** across:
+Currently tracking **50+ high-impact APIs** across:
 
 | Category | APIs | Examples |
 |----------|------|----------|
-| **Windows .NET** | 10 | Process.Start, HttpClient, Reflection.Assembly.Load |
-| **Windows COM** | 6 | WMI Win32_Process, ADSI, Office COM, MSXML |
-| **Windows Native API** | 3 | VirtualAllocEx, NtCreateFile, RegOpenKeyEx |
+| **Windows .NET** | 12 | Process.Start, HttpClient, Reflection APIs, MethodInfo.Invoke |
+| **Windows COM** | 11 | WMI, ADSI, Office COM (Outlook, Access, Excel), MSXML, Shell.Application |
+| **Windows Native API** | 9 | VirtualAllocEx, CreateRemoteThread, RegOpenKeyEx, SetWindowsHookEx |
+| **Script Engines** | 4 | PowerShell, VBScript, WScript.Shell |
 | **Browser Extensions** | 2 | Chrome storage.sync, webRequest API |
 | **Cloud Metadata** | 3 | AWS EC2, Azure Managed Identity, GCP Metadata |
-| **Script Engines** | 3 | PowerShell, Python, VBScript |
-| **Misc** | 2 | TypeConverter, Marshal.GetDelegateForFunctionPointer |
+| **Other APIs** | 9 | TypeConverter, Marshal APIs, NamedPipes, EventLog, etc. |
 
 ## 🚀 Quick Start
 
@@ -196,4 +196,11 @@ Quality standards for submissions:
 
 ---
 
-**Status:** MVP (29 APIs) | **Target v1.0:** 100+ APIs | **Community:** Ready for submissions
+**Status:** v0.5 (50 APIs) | **Target v1.0:** 100+ APIs | **Community:** Actively accepting submissions
+
+### Recent Updates (v0.5)
+- ✅ Added 21 new high-impact APIs with real threat actor references
+- ✅ Created comprehensive "About" page establishing credibility
+- ✅ Enhanced threat intelligence linking (APT groups, malware families, CVEs)
+- ✅ Expanded detection strategies across all major platforms (Sysmon, EDR, SIEM)
+- ✅ Professional branding and community focus

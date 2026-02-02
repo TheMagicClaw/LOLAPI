@@ -1,0 +1,67 @@
+name: kernel32.dll - LoadLibraryA/W
+category: windows-native-api
+subcategory: module-loading
+api:
+  namespace: kernel32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibrarya
+  function: LoadLibraryA / LoadLibraryW
+abuse_scenarios:
+- name: DLL search order hijacking
+  technique_id: T1574.001
+  description: Load attacker-controlled DLL from writeable path before legitimate
+    module
+  code_snippet: HMODULE hMod = LoadLibraryA("kernel32.dll"); // Loads from %PATH%
+    - can be hijacked
+  detection_difficulty: medium
+  common_in_campaigns: true
+- name: Reflective DLL injection
+  technique_id: T1055.001
+  description: Load custom DLL for in-memory execution without WriteFile to disk
+  code_snippet: HMODULE hMod = LoadLibraryA((LPCSTR)shellcode_buffer);
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: medium
+  notes: Event ID 7 (Image Load) - look for DLLs from unusual paths
+- vendor: Windows Defender
+  effectiveness: medium
+  notes: Behavioral detection of DLL search order anomalies
+mitigation:
+- category: policy
+  description: Enforce strict DLL search order via registry
+  feasibility: high
+- category: code
+  description: Use absolute paths for LoadLibrary calls
+  feasibility: medium
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 80
+references:
+  techniques:
+  - T1574.001
+  - T1055.001
+  threat_actors:
+  - APT1
+  - Lazarus
+  - FIN7
+  malware_families:
+  - ZeuS
+  - Poison Ivy
+  - PlugX
+  tools:
+  - Cobalt Strike
+  - PowerSploit
+  cves:
+  - CVE-2010-3738
+tags:
+- windows-native-api
+- dll-hijacking
+- persistence
+id: e72247d0-3c6b-4ae9-aadc-691cfb927593
+author: magicsword-io
+created: '2026-02-02'
+verified: true

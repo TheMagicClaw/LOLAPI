@@ -1,0 +1,68 @@
+name: kernel32.dll - CreateRemoteThread
+category: windows-native-api
+subcategory: process-injection
+api:
+  namespace: kernel32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread
+  function: CreateRemoteThread
+abuse_scenarios:
+- name: Remote code injection
+  technique_id: T1055.001
+  description: Execute shellcode in remote process by creating a thread in another
+    process
+  code_snippet: HANDLE hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)addr,
+    NULL, 0, NULL);
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: high
+  notes: Suspicious CreateRemoteThread + VirtualAllocEx pattern detection
+- vendor: Splunk/Sysmon
+  effectiveness: high
+  notes: Monitor for CreateRemoteThread call followed by thread creation from suspicious
+    memory
+mitigation:
+- category: policy
+  description: Enable Code Integrity (HVCI) to prevent injection
+  feasibility: high
+- category: monitoring
+  description: Monitor Sysmon Event ID 8 for CreateRemoteThread
+  feasibility: easy
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1055.001
+  threat_actors:
+  - APT28
+  - Lazarus
+  - APT33
+  malware_families:
+  - Emotet
+  - IcedID
+  - AsyncRAT
+  tools:
+  - Cobalt Strike
+  - Metasploit
+  - Empire
+  campaigns:
+  - name: Emotet distribution
+    year: 2022
+    description: Used for secondary payload injection
+  - name: Operation Stealth
+    year: 2023
+    description: APT28 used for lateral movement
+tags:
+- windows-native-api
+- process-injection
+- rce
+- widely-abused
+id: d4f7b037-613f-4778-9ade-408ed11e1466
+author: magicsword-io
+created: '2026-02-02'
+verified: true

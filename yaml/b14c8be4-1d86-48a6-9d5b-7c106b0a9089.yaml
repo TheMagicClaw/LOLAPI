@@ -1,0 +1,56 @@
+name: System.IO.Pipes.NamedPipeClientStream
+category: windows-dotnet-api
+subcategory: inter-process-communication
+api:
+  namespace: System.IO.Pipes
+  language: .NET 3.5+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.io.pipes.namedpipeclientstream
+  class: NamedPipeClientStream
+abuse_scenarios:
+- name: Lateral movement via named pipes
+  technique_id: T1570
+  description: Connect to named pipes to communicate with other processes/machines
+  code_snippet: 'NamedPipeClientStream pipeClient = new NamedPipeClientStream(".",
+    "malware_pipe");
+
+    pipeClient.Connect();
+
+    StreamWriter writer = new StreamWriter(pipeClient);
+
+    writer.WriteLine(command);'
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Monitor for NamedPipe connections between processes
+- vendor: EDR
+  effectiveness: high
+  notes: Behavioral detection of unusual named pipe usage
+mitigation:
+- category: monitoring
+  description: Monitor named pipe creation and access
+  feasibility: medium
+risk:
+  severity: high
+  prevalence: medium
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 55
+references:
+  techniques:
+  - T1570
+  threat_actors:
+  - APT28
+  - APT29
+  malware_families:
+  - Cobalt Strike
+  tools:
+  - Cobalt Strike
+tags:
+- windows-dotnet-api
+- ipc
+- lateral-movement
+id: b14c8be4-1d86-48a6-9d5b-7c106b0a9089
+author: magicsword-io
+created: '2026-02-02'
+verified: true

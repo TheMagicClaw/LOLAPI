@@ -1,0 +1,56 @@
+name: kernel32.dll - GetProcAddress
+category: windows-native-api
+subcategory: api-resolution
+api:
+  namespace: kernel32.dll
+  language: C/C++ (P/Invoke)
+  documentation: https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress
+  function: GetProcAddress
+abuse_scenarios:
+- name: API obfuscation
+  technique_id: T1036.004
+  description: Resolve API addresses at runtime to avoid static detection
+  code_snippet: 'typedef HANDLE (WINAPI *pCreateRemoteThread)(HANDLE, LPVOID, SIZE_T,
+    LPTHREAD_START_ROUTINE, LPVOID, DWORD, LPDWORD);
+
+    pCreateRemoteThread = (pCreateRemoteThread)GetProcAddress(GetModuleHandle("kernel32.dll"),
+    "CreateRemoteThread");'
+  detection_difficulty: hard
+  common_in_campaigns: true
+detection:
+- vendor: Sysmon
+  effectiveness: low
+  notes: Difficult to detect in isolation; combine with behavioral analysis
+- vendor: EDR
+  effectiveness: medium
+  notes: Monitor for excessive GetProcAddress calls from suspicious processes
+mitigation:
+- category: code
+  description: Prefer static linking for critical APIs
+  feasibility: high
+risk:
+  severity: high
+  prevalence: widespread
+  ease_of_abuse: easy
+  likelihood_in_real_attacks: 90
+references:
+  techniques:
+  - T1036.004
+  threat_actors:
+  - APT28
+  - Lazarus
+  - APT29
+  malware_families:
+  - Notpetya
+  - WannaCry (variant)
+  tools:
+  - Cobalt Strike
+  - Mimikatz
+tags:
+- windows-native-api
+- api-resolution
+- obfuscation
+id: 4ff52a0c-2f93-45d6-87e9-0a5b48426f02
+author: magicsword-io
+created: '2026-02-02'
+verified: true

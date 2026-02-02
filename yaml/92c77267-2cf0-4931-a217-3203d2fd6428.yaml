@@ -1,0 +1,47 @@
+name: access.Application COM Object
+category: windows-com-api
+subcategory: code-execution
+api:
+  namespace: Access.Application
+  language: VBScript/C#/PowerShell
+  documentation: https://learn.microsoft.com/en-us/office/vba/api/access.application
+  object: Access.Application
+abuse_scenarios:
+- name: Macro execution via Access
+  technique_id: T1203
+  description: Create and execute Access macros for code execution
+  code_snippet: Set app = CreateObject("Access.Application"); app.OpenCurrentDatabase
+    "C:\\malicious.mdb"; app.Run "malicious_macro"
+  detection_difficulty: medium
+  common_in_campaigns: false
+detection:
+- vendor: Microsoft Defender
+  effectiveness: high
+  notes: Behavior detection of Access.Application creation
+- vendor: EDR
+  effectiveness: high
+  notes: Monitor for Office COM object abuse
+mitigation:
+- category: policy
+  description: Disable Office COM object execution
+  feasibility: high
+risk:
+  severity: high
+  prevalence: low
+  ease_of_abuse: medium
+  likelihood_in_real_attacks: 45
+references:
+  techniques:
+  - T1203
+  threat_actors:
+  - Scattered
+  malware_families:
+  - Custom malware
+tags:
+- windows-com-api
+- macro
+- code-execution
+id: 92c77267-2cf0-4931-a217-3203d2fd6428
+author: magicsword-io
+created: '2026-02-02'
+verified: true
