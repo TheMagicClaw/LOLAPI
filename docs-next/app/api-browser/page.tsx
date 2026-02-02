@@ -32,9 +32,16 @@ export default function APIBrowser() {
         let data = null
         let response = null
 
+        // Construct the base URL - use window.location for proper path handling
+        const getUrl = (path: string): string => {
+          if (typeof window === 'undefined') return path
+          const basePath = (window as any).__NEXT_DATA__?.basePath || ''
+          return `${basePath}${path}`
+        }
+
         // First, try to fetch the static JSON file (works on GitHub Pages)
         try {
-          response = await fetch('/api-data.json')
+          response = await fetch(getUrl('/api-data.json'))
           if (response.ok) {
             data = await response.json()
             console.log('Loaded APIs from static JSON file')
@@ -45,7 +52,7 @@ export default function APIBrowser() {
 
         // Fallback to API route if static file not available
         if (!data) {
-          response = await fetch('/api/apis')
+          response = await fetch(getUrl('/api/apis'))
           if (response.ok) {
             data = await response.json()
             console.log('Loaded APIs from API route')
