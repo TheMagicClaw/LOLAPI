@@ -1,66 +1,55 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const apis = [
-  {
-    id: '1',
-    name: 'System.Diagnostics.Process.Start',
-    category: 'Windows .NET',
-    risk: 'Critical',
-    techniques: ['T1059.001'],
-    description: 'Execute arbitrary commands via .NET process execution',
-  },
-  {
-    id: '2',
-    name: 'WMI Win32_Process.Create',
-    category: 'Windows COM',
-    risk: 'Critical',
-    techniques: ['T1047'],
-    description: 'Create processes via WMI for command execution',
-  },
-  {
-    id: '3',
-    name: 'Reflection.Assembly.Load',
-    category: 'Windows .NET',
-    risk: 'High',
-    techniques: ['T1129'],
-    description: 'Load arbitrary .NET assemblies for code execution',
-  },
-  {
-    id: '4',
-    name: 'HttpClient.GetAsync',
-    category: 'Windows .NET',
-    risk: 'High',
-    techniques: ['T1071'],
-    description: 'Download files and execute remote payloads',
-  },
-  {
-    id: '5',
-    name: 'VirtualAllocEx',
-    category: 'Native APIs',
-    risk: 'High',
-    techniques: ['T1548'],
-    description: 'Allocate memory in remote process for code injection',
-  },
-  {
-    id: '6',
-    name: 'Chrome storage.sync',
-    category: 'Browser Ext',
-    risk: 'Medium',
-    techniques: ['T1133'],
-    description: 'Persist data in browser storage across restarts',
-  },
-]
+interface API {
+  id: string
+  name: string
+  category: string
+  risk: string
+  techniques: string[]
+  description: string
+}
 
-const categories = ['All', 'Windows .NET', 'Windows COM', 'Native APIs', 'Browser Ext', 'Cloud Services']
+const defaultCategories = ['All', 'Windows API', 'Windows COM', 'Windows .NET', 'Native APIs', 'Browser Ext', 'Cloud Services']
 const riskLevels = ['All', 'Critical', 'High', 'Medium', 'Low']
 
 export default function APIBrowser() {
+  const [apis, setApis] = useState<API[]>([])
+  const [categories, setCategories] = useState<string[]>(defaultCategories)
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedRisk, setSelectedRisk] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Load APIs from the API route
+  useEffect(() => {
+    const fetchAPIs = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch('/api/apis')
+        if (!response.ok) {
+          throw new Error('Failed to fetch APIs')
+        }
+        const data = await response.json()
+        setApis(data.data || [])
+
+        // Extract unique categories from loaded APIs
+        const categorySet = new Set<string>(data.data.map((api: API) => api.category))
+        const uniqueCategories = ['All', ...(Array.from(categorySet) as string[])]
+        setCategories(uniqueCategories.sort((a, b) => (a === 'All' ? -1 : a.localeCompare(b))))
+      } catch (err) {
+        console.error('Error loading APIs:', err)
+        setError('Failed to load APIs. Please refresh the page.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchAPIs()
+  }, [])
 
   const filtered = apis.filter((api) => {
     const matchCategory = selectedCategory === 'All' || api.category === selectedCategory
@@ -83,6 +72,41 @@ export default function APIBrowser() {
     }
   }
 
+  if (loading) {
+    return (
+      <>
+        <section className="bg-gradient-purple text-white py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-4xl font-bold mb-4">API Browser</h1>
+            <p className="text-lg opacity-90">Loading weaponized APIs...</p>
+          </div>
+        </section>
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-gray-600">Loading APIs...</p>
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+      <>
+        <section className="bg-gradient-purple text-white py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-4xl font-bold mb-4">API Browser</h1>
+          </div>
+        </section>
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-red-600">{error}</p>
+          </div>
+        </section>
+      </>
+    )
+  }
+
   return (
     <>
       {/* Header */}
@@ -90,7 +114,7 @@ export default function APIBrowser() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">API Browser</h1>
           <p className="text-lg opacity-90">
-            Explore 29+ weaponized APIs with abuse scenarios and detection strategies
+            Explore {apis.length}+ weaponized APIs with abuse scenarios and detection strategies
           </p>
         </div>
       </section>
@@ -208,7 +232,7 @@ export default function APIBrowser() {
               <div className="text-3xl mb-3">🔍</div>
               <h3 className="font-bold mb-2">Search</h3>
               <p className="text-gray-600">
-                Use the search bar to find APIs by name or find descriptions.
+                Use the search bar to find APIs by name or description.
               </p>
             </div>
             <div>

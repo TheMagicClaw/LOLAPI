@@ -14,6 +14,9 @@ dist/
 .next/
 out/
 
+# Auto-generated files
+lib/api-data.ts
+
 # Misc
 .DS_Store
 *.pem
