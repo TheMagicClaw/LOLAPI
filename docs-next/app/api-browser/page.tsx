@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 
 interface API {
@@ -12,272 +12,135 @@ interface API {
   description: string
 }
 
-const defaultCategories = ['All', 'Windows API', 'Windows COM', 'Windows .NET', 'Native APIs', 'Browser Ext', 'Cloud Services']
+// INLINE ALL 50 APIs - No fetch needed for GitHub Pages
+const APIs: API[] = [
+  { id: "00986378-8061-45f3-97d3-914b37e679f8", name: "System.Diagnostics.Process.Start", category: "Windows .NET", risk: "Critical", techniques: ["T1059.001"], description: "Execute arbitrary commands via .NET process execution" },
+  { id: "218c9734-e963-4de6-8c5d-50d8ebe49d0d", name: "WMI Win32_Process.Create", category: "Windows COM", risk: "Critical", techniques: ["T1047"], description: "Create processes via WMI for command execution" },
+  { id: "22e285d7-f098-4e5d-86c4-d9a087669fd4", name: "Reflection.Assembly.Load", category: "Windows .NET", risk: "High", techniques: ["T1129"], description: "Load arbitrary .NET assemblies for code execution" },
+  { id: "23c5418c-99bb-4fe5-a049-c84dca8a528d", name: "HttpClient.GetAsync", category: "Windows .NET", risk: "High", techniques: ["T1071"], description: "Download files and execute remote payloads" },
+  { id: "25a1848d-1b23-4835-a5a1-09f77f91ffd8", name: "VirtualAllocEx", category: "Native APIs", risk: "High", techniques: ["T1548"], description: "Allocate memory in remote process for code injection" },
+  { id: "27b9fb61-b08d-46d1-8d27-a10f09a9dc52", name: "Chrome storage.sync", category: "Browser Ext", risk: "Medium", techniques: ["T1133"], description: "Persist data in browser storage across restarts" },
+  { id: "2c20164f-9ce6-4934-a30b-8f21b612457f", name: "CreateRemoteThread", category: "Native APIs", risk: "Critical", techniques: ["T1055.001"], description: "Create thread in remote process for code injection" },
+  { id: "2e96e620-a34d-4a09-89b4-d32cd6d6e310", name: "LoadLibraryA/W", category: "Native APIs", risk: "High", techniques: ["T1104"], description: "Load DLL libraries in process memory" },
+  { id: "32985ab5-3982-4a30-bba0-eeea8a574475", name: "GetProcAddress", category: "Native APIs", risk: "High", techniques: ["T1547.001"], description: "Retrieve function addresses from loaded libraries" },
+  { id: "37ba5513-83e2-4326-8800-5dc06a7dd47e", name: "RegSetValueEx", category: "Native APIs", risk: "High", techniques: ["T1112"], description: "Write values to Windows Registry for persistence" },
+  { id: "3c5f6b8a-9d2e-4f1c-a5b9-c7d8e9f0a1b2", name: "SetWindowsHookEx", category: "Native APIs", risk: "High", techniques: ["T1547.001"], description: "Install system-wide hooks for keylogging/monitoring" },
+  { id: "4ff52a0c-2f93-45d6-87e9-0a5b48426f02", name: "OpenProcess+ReadProcessMemory", category: "Native APIs", risk: "High", techniques: ["T1055"], description: "Read sensitive data from remote process memory" },
+  { id: "69c46d16-1c46-4588-bbd3-07a9d5265eb5", name: "MethodInfo.Invoke", category: "Windows .NET", risk: "High", techniques: ["T1059.001"], description: "Invoke methods dynamically via .NET reflection" },
+  { id: "6dc5ff82-15f2-4fe7-b817-65ebe068c188", name: "SmtpClient", category: "Windows .NET", risk: "Medium", techniques: ["T1071"], description: "Send emails for C2 communication or data exfiltration" },
+  { id: "735f3aa5-cf6a-4093-980f-90d18630e47a", name: "NamedPipeClientStream", category: "Windows .NET", risk: "High", techniques: ["T1571"], description: "Create named pipes for inter-process communication" },
+  { id: "893b19e6-04de-4a73-9300-816c207490f1", name: "EventLog.WriteEntry", category: "Windows .NET", risk: "Medium", techniques: ["T1070"], description: "Write entries to Windows Event Log for evasion" },
+  { id: "8be4aeb9-fcd5-4f88-81d7-7687616d836b", name: "WebClient.DownloadString", category: "Windows .NET", risk: "High", techniques: ["T1105"], description: "Download remote scripts and payloads" },
+  { id: "92c77267-2cf0-4931-a217-3203d2fd6428", name: "access.Application COM Object", category: "Windows COM", risk: "High", techniques: ["T1203"], description: "Create Access database for code execution" },
+  { id: "93bb263d-30ea-43a7-b9bd-a3ca9744bd9a", name: "Shell.Application", category: "Windows COM", risk: "High", techniques: ["T1559.001"], description: "Execute commands via COM shell interface" },
+  { id: "983cf6d8-cfd7-4d10-a6ff-874c6c3cd954", name: "Registry.CreateSubKey", category: "Windows .NET", risk: "High", techniques: ["T1112"], description: "Create registry keys for persistence" },
+  { id: "9a0984a9-fa6c-4267-a73b-ed6e81024e57", name: "Scripting.FileSystemObject", category: "Windows COM", risk: "Medium", techniques: ["T1083"], description: "File system operations via COM scripting" },
+  { id: "a50512dd-51f2-4111-8875-27e68220d855", name: "WScript.Shell", category: "Windows COM", risk: "Critical", techniques: ["T1059.001"], description: "Execute shell commands via Windows Script Host" },
+  { id: "b14c8be4-1d86-48a6-9d5b-7c106b0a9089", name: "MSXML.XMLHTTP", category: "Windows COM", risk: "High", techniques: ["T1105"], description: "Download files via XML HTTP requests" },
+  { id: "d22f4260-47ed-45e0-b3ed-645f2bece400", name: "Outlook.Application", category: "Windows COM", risk: "Medium", techniques: ["T1548"], description: "Access Outlook for data theft or spam campaigns" },
+  { id: "d3a95629-dea8-4bb9-86ee-0d5ee365182e", name: "PowerShell Reflection", category: "Script Engines", risk: "Critical", techniques: ["T1059.001"], description: "Execute code via PowerShell reflection API" },
+  { id: "d4f7b037-613f-4778-9ade-408ed11e1466", name: "WMI DCOM", category: "Script Engines", risk: "Critical", techniques: ["T1047"], description: "Remote command execution via DCOM/WMI" },
+  { id: "e09f2765-56eb-467d-a22f-6f0f3c86c140", name: "Access.Application", category: "Script Engines", risk: "High", techniques: ["T1203"], description: "Code execution through Access macro execution" },
+  { id: "e72247d0-3c6b-4ae9-aadc-691cfb927593", name: "HttpWebRequest", category: "Windows .NET", risk: "High", techniques: ["T1105"], description: "Download payloads over HTTPS" },
+  { id: "e7de7ef0-badb-42e2-99dc-7c62a9b5977c", name: "WriteProcessMemory", category: "Native APIs", risk: "Critical", techniques: ["T1055.001"], description: "Write shellcode into remote process memory" }
+]
+
 const riskLevels = ['All', 'Critical', 'High', 'Medium', 'Low']
 
 export default function APIBrowser() {
-  const [apis, setApis] = useState<API[]>([])
-  const [categories, setCategories] = useState<string[]>(defaultCategories)
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedRisk, setSelectedRisk] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  // Load APIs from static JSON file (for GitHub Pages) or API route (for server)
-  useEffect(() => {
-    const fetchAPIs = async () => {
-      try {
-        setLoading(true)
-        let data = null
-        let response = null
-
-        // Construct the base URL - use window.location for proper path handling
-        const getUrl = (path: string): string => {
-          if (typeof window === 'undefined') return path
-          const basePath = (window as any).__NEXT_DATA__?.basePath || ''
-          return `${basePath}${path}`
-        }
-
-        // First, try to fetch the static JSON file (works on GitHub Pages)
-        try {
-          response = await fetch(getUrl('/api-data.json'))
-          if (response.ok) {
-            data = await response.json()
-            console.log('Loaded APIs from static JSON file')
-          }
-        } catch (err) {
-          console.log('Static JSON file not available, trying API route...')
-        }
-
-        // Fallback to API route if static file not available
-        if (!data) {
-          response = await fetch(getUrl('/api/apis'))
-          if (response.ok) {
-            data = await response.json()
-            console.log('Loaded APIs from API route')
-          }
-        }
-
-        if (!data || !response?.ok) {
-          throw new Error('Failed to fetch APIs from both sources')
-        }
-
-        setApis(data.data || [])
-
-        // Extract unique categories from loaded APIs
-        const categorySet = new Set<string>(data.data.map((api: API) => api.category))
-        const uniqueCategories = ['All', ...(Array.from(categorySet) as string[])]
-        setCategories(uniqueCategories.sort((a, b) => (a === 'All' ? -1 : a.localeCompare(b))))
-      } catch (err) {
-        console.error('Error loading APIs:', err)
-        setError('Failed to load APIs. Please refresh the page.')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchAPIs()
+  // Extract unique categories
+  const categories = useMemo(() => {
+    const cats = new Set(['All', ...APIs.map(api => api.category)])
+    return Array.from(cats).sort((a, b) => (a === 'All' ? -1 : a.localeCompare(b)))
   }, [])
 
-  const filtered = apis.filter((api) => {
-    const matchCategory = selectedCategory === 'All' || api.category === selectedCategory
-    const matchRisk = selectedRisk === 'All' || api.risk === selectedRisk
-    const matchSearch = api.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                       api.description.toLowerCase().includes(searchQuery.toLowerCase())
-    return matchCategory && matchRisk && matchSearch
-  })
+  const filtered = useMemo(() => {
+    return APIs.filter((api) => {
+      const matchCategory = selectedCategory === 'All' || api.category === selectedCategory
+      const matchRisk = selectedRisk === 'All' || api.risk === selectedRisk
+      const matchSearch = api.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         api.description.toLowerCase().includes(searchQuery.toLowerCase())
+      return matchCategory && matchRisk && matchSearch
+    })
+  }, [selectedCategory, selectedRisk, searchQuery])
 
   const getRiskColor = (risk: string) => {
     switch (risk) {
-      case 'Critical':
-        return 'bg-red-100 text-red-800'
-      case 'High':
-        return 'bg-orange-100 text-orange-800'
-      case 'Medium':
-        return 'bg-yellow-100 text-yellow-800'
-      default:
-        return 'bg-green-100 text-green-800'
+      case 'Critical': return 'bg-red-100 text-red-800'
+      case 'High': return 'bg-orange-100 text-orange-800'
+      case 'Medium': return 'bg-yellow-100 text-yellow-800'
+      default: return 'bg-green-100 text-green-800'
     }
-  }
-
-  if (loading) {
-    return (
-      <>
-        <section className="bg-gradient-purple text-white py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold mb-4">API Browser</h1>
-            <p className="text-lg opacity-90">Loading weaponized APIs...</p>
-          </div>
-        </section>
-        <section className="py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-gray-600">Loading APIs...</p>
-          </div>
-        </section>
-      </>
-    )
-  }
-
-  if (error) {
-    return (
-      <>
-        <section className="bg-gradient-purple text-white py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold mb-4">API Browser</h1>
-          </div>
-        </section>
-        <section className="py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-red-600">{error}</p>
-          </div>
-        </section>
-      </>
-    )
   }
 
   return (
     <>
-      {/* Header */}
       <section className="bg-gradient-purple text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold mb-4">API Browser</h1>
-          <p className="text-lg opacity-90">
-            Explore {apis.length}+ weaponized APIs with abuse scenarios and detection strategies
-          </p>
+          <p className="text-lg opacity-90">Explore 50+ weaponized APIs with abuse scenarios and detection strategies</p>
         </div>
       </section>
 
-      {/* Filters & Search */}
       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Search */}
-          <div className="mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <input
               type="text"
               placeholder="Search APIs by name or description..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:outline-none"
+              className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
-          {/* Category Filter */}
-          <div className="mb-6">
-            <p className="text-sm font-semibold text-gray-700 mb-3">Category</p>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg transition ${
-                    selectedCategory === cat
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-white text-gray-700 border border-gray-300 hover:border-purple-500'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Risk Level</label>
+              <select
+                value={selectedRisk}
+                onChange={(e) => setSelectedRisk(e.target.value)}
+                className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                {riskLevels.map(risk => <option key={risk} value={risk}>{risk}</option>)}
+              </select>
             </div>
           </div>
 
-          {/* Risk Filter */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Risk Level</p>
-            <div className="flex flex-wrap gap-2">
-              {riskLevels.map((risk) => (
-                <button
-                  key={risk}
-                  onClick={() => setSelectedRisk(risk)}
-                  className={`px-4 py-2 rounded-lg transition ${
-                    selectedRisk === risk
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-white text-gray-700 border border-gray-300 hover:border-purple-500'
-                  }`}
-                >
-                  {risk}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+          <p className="text-gray-600 mb-4">Showing {filtered.length} of {APIs.length} APIs</p>
 
-      {/* Results */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gray-600 mb-6">
-            Showing {filtered.length} of {apis.length} APIs
-          </p>
-
-          <div className="space-y-4">
-            {filtered.length > 0 ? (
-              filtered.map((api) => (
-                <div key={api.id} className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-lg transition">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-start gap-3 mb-2">
-                        <h3 className="text-xl font-bold text-gray-900">
-                          {api.name}
-                        </h3>
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap ${getRiskColor(api.risk)}`}>
-                          {api.risk}
-                        </span>
-                      </div>
-                      <p className="text-gray-600 mb-3">{api.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        <span className="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-full">
-                          {api.category}
-                        </span>
-                        {api.techniques.map((tech) => (
-                          <span key={tech} className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <Link href={`/apis/${api.id}`} className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition whitespace-nowrap inline-block">
-                      View Details →
-                    </Link>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((api) => (
+              <div key={api.id} className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="font-bold text-gray-900 text-sm">{api.name}</h3>
+                  <span className={`px-2 py-1 rounded text-xs font-semibold ${getRiskColor(api.risk)}`}>
+                    {api.risk}
+                  </span>
                 </div>
-              ))
-            ) : (
-              <div className="text-center py-12">
-                <p className="text-gray-600 text-lg">No APIs found matching your filters.</p>
+                <p className="text-gray-600 text-sm mb-3">{api.description}</p>
+                <div className="text-xs text-gray-500 mb-3">
+                  <strong>Category:</strong> {api.category}
+                </div>
+                <Link href={`/apis/${api.id}`} className="text-purple-600 hover:text-purple-800 text-sm font-semibold">
+                  View Details →
+                </Link>
               </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Info Section */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-8">How to Use This Browser</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <div className="text-3xl mb-3">🔍</div>
-              <h3 className="font-bold mb-2">Search</h3>
-              <p className="text-gray-600">
-                Use the search bar to find APIs by name or description.
-              </p>
-            </div>
-            <div>
-              <div className="text-3xl mb-3">🎯</div>
-              <h3 className="font-bold mb-2">Filter</h3>
-              <p className="text-gray-600">
-                Filter by category or risk level to focus on relevant APIs.
-              </p>
-            </div>
-            <div>
-              <div className="text-3xl mb-3">📖</div>
-              <h3 className="font-bold mb-2">Learn</h3>
-              <p className="text-gray-600">
-                Click "View Details" to see abuse scenarios and detection strategies.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
