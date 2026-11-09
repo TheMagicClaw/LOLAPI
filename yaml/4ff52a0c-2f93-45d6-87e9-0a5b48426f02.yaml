@@ -8,7 +8,7 @@ api:
   function: GetProcAddress
 abuse_scenarios:
 - name: API obfuscation
-  technique_id: T1036.004
+  technique_id: T1027.007
   description: Resolve API addresses at runtime to avoid static detection
   code_snippet: 'typedef HANDLE (WINAPI *pCreateRemoteThread)(HANDLE, LPVOID, SIZE_T,
     LPTHREAD_START_ROUTINE, LPVOID, DWORD, LPDWORD);
@@ -35,7 +35,7 @@ risk:
   likelihood_in_real_attacks: 90
 references:
   techniques:
-  - T1036.004
+  - T1027.007
   threat_actors:
   - APT28
   - Lazarus

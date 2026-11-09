@@ -9,7 +9,7 @@ api:
   class: Compute Metadata
 abuse_scenarios:
 - name: Service account key theft
-  technique_id: T1552.001
+  technique_id: T1552.005
   description: Access GCP service account keys from metadata endpoint
   code_snippet: curl http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/identity
   detection_difficulty: easy
@@ -29,7 +29,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1552.001
+  - T1552.005
   tools:
   - Cobalt Strike
   - Mimikatz

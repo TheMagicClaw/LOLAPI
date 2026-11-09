@@ -9,7 +9,7 @@ api:
   class: EC2 Metadata Service
 abuse_scenarios:
 - name: IAM credential theft
-  technique_id: T1552.001
+  technique_id: T1552.005
   description: Access 169.254.169.254 to steal temporary credentials
   code_snippet: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/
   detection_difficulty: easy
@@ -29,7 +29,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1552.001
+  - T1552.005
   tools:
   - Cobalt Strike
   - Mimikatz

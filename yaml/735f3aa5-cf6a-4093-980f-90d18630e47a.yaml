@@ -9,7 +9,7 @@ api:
   method: Invoke
 abuse_scenarios:
 - name: Reflection-based code execution
-  technique_id: T1218.009
+  technique_id: T1620
   description: Use reflection to invoke methods without direct references
   code_snippet: 'var method = typeof(Process).GetMethod("Start", new[] { typeof(string)
     });
@@ -35,7 +35,7 @@ risk:
   likelihood_in_real_attacks: 85
 references:
   techniques:
-  - T1218.009
+  - T1620
   threat_actors:
   - APT29
   - FIN7

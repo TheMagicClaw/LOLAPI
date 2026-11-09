@@ -46,7 +46,7 @@ All submissions must meet these criteria:
 ```yaml
 abuse_scenarios:
   - name: "In-memory code execution"
-    technique_id: "T1027.011"
+    technique_id: "T1620"
     description: "Load and execute .NET assembly from memory without disk I/O"
     code_snippet: |
       var asm = Assembly.Load(assemblyBytes);
