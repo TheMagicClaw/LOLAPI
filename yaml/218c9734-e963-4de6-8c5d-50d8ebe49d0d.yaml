@@ -1,5 +1,5 @@
 name: WMI - Win32_DCOMApplication
-category: windows-com-api
+category: windows-com
 subcategory: lateral-movement
 api:
   namespace: WMI
@@ -24,7 +24,7 @@ detection:
 mitigation:
 - category: policy
   description: Restrict DCOM activation
-  feasibility: high
+  feasibility: easy
 risk:
   severity: critical
   prevalence: medium

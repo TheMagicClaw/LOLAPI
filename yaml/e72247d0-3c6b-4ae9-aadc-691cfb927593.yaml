@@ -1,5 +1,5 @@
 name: kernel32.dll - LoadLibraryA/W
-category: windows-native-api
+category: windows-api
 subcategory: module-loading
 api:
   namespace: kernel32.dll
@@ -31,8 +31,8 @@ detection:
 mitigation:
 - category: policy
   description: Enforce strict DLL search order via registry
-  feasibility: high
-- category: code
+  feasibility: easy
+- category: hardening
   description: Use absolute paths for LoadLibrary calls
   feasibility: medium
 risk:

@@ -1,5 +1,5 @@
 name: PowerShell - Reflection and .NET Abuse
-category: script-engine-api
+category: script-engine
 subcategory: code-execution
 api:
   namespace: PowerShell.exe
@@ -24,7 +24,7 @@ detection:
 mitigation:
 - category: policy
   description: Restrict PowerShell execution via WDAC/AppLocker
-  feasibility: high
+  feasibility: easy
 - category: monitoring
   description: Monitor PowerShell script block logging
   feasibility: medium

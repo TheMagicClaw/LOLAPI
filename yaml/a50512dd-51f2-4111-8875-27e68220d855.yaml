@@ -1,5 +1,5 @@
 name: advapi32.dll - RegSetValueEx
-category: windows-native-api
+category: windows-api
 subcategory: registry-manipulation
 api:
   namespace: advapi32.dll
@@ -31,7 +31,7 @@ detection:
 mitigation:
 - category: policy
   description: Restrict registry write access via GPO
-  feasibility: high
+  feasibility: easy
 - category: monitoring
   description: Monitor Run/RunOnce registry modifications
   feasibility: easy

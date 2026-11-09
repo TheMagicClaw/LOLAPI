@@ -29,7 +29,7 @@ detection:
 mitigation:
 - category: policy
   description: Block external SMTP connections
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: low

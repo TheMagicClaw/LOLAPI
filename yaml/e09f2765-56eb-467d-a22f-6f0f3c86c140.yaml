@@ -1,5 +1,5 @@
 name: outlook.Application COM Object
-category: windows-com-api
+category: windows-com
 subcategory: data-exfiltration
 api:
   namespace: Outlook.Application

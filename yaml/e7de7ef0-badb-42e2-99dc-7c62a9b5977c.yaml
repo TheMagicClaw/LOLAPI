@@ -1,5 +1,5 @@
 name: WScript.Shell COM Object
-category: windows-com-api
+category: windows-com
 subcategory: script-execution
 api:
   namespace: WScript.Shell
@@ -31,7 +31,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Script Host
-  feasibility: high
+  feasibility: easy
 risk:
   severity: critical
   prevalence: widespread

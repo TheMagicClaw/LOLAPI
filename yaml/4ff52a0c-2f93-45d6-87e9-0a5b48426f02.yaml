@@ -1,5 +1,5 @@
 name: kernel32.dll - GetProcAddress
-category: windows-native-api
+category: windows-api
 subcategory: api-resolution
 api:
   namespace: kernel32.dll
@@ -25,9 +25,9 @@ detection:
   effectiveness: medium
   notes: Monitor for excessive GetProcAddress calls from suspicious processes
 mitigation:
-- category: code
+- category: hardening
   description: Prefer static linking for critical APIs
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

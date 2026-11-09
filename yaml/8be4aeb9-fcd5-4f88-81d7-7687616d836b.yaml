@@ -1,5 +1,5 @@
 name: Shell.Application COM Object
-category: windows-com-api
+category: windows-com
 subcategory: shell-execution
 api:
   namespace: Shell.Application
@@ -25,7 +25,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Windows Script Host
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

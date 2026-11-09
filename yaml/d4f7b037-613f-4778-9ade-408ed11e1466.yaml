@@ -1,5 +1,5 @@
 name: kernel32.dll - CreateRemoteThread
-category: windows-native-api
+category: windows-api
 subcategory: process-injection
 api:
   namespace: kernel32.dll
@@ -26,7 +26,7 @@ detection:
 mitigation:
 - category: policy
   description: Enable Code Integrity (HVCI) to prevent injection
-  feasibility: high
+  feasibility: easy
 - category: monitoring
   description: Monitor Sysmon Event ID 8 for CreateRemoteThread
   feasibility: easy

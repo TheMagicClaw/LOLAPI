@@ -1,5 +1,5 @@
 name: Scripting.FileSystemObject COM Object
-category: windows-com-api
+category: windows-com
 subcategory: file-operations
 api:
   namespace: Scripting.FileSystemObject
@@ -25,7 +25,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Windows Script Host and VBScript
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

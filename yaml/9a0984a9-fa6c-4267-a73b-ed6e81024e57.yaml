@@ -1,5 +1,5 @@
 name: user32.dll - SetWindowsHookEx
-category: windows-native-api
+category: windows-api
 subcategory: hooking
 api:
   namespace: user32.dll
@@ -29,7 +29,7 @@ detection:
   effectiveness: high
   notes: Behavioral detection of hook installation and message interception
 mitigation:
-- category: code
+- category: hardening
   description: Use modern input handling APIs instead of hooks
   feasibility: medium
 - category: policy

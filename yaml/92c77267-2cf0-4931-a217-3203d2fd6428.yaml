@@ -1,5 +1,5 @@
 name: access.Application COM Object
-category: windows-com-api
+category: windows-com
 subcategory: code-execution
 api:
   namespace: Access.Application
@@ -24,7 +24,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Office COM object execution
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: low

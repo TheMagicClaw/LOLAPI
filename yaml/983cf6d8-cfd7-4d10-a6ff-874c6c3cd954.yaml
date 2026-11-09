@@ -1,5 +1,5 @@
 name: MSXML.XMLHTTP.6.0 COM Object
-category: windows-com-api
+category: windows-com
 subcategory: network-communication
 api:
   namespace: MSXML.XMLHTTP
@@ -24,7 +24,7 @@ detection:
 mitigation:
 - category: policy
   description: Restrict outbound HTTP from script engines
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread
