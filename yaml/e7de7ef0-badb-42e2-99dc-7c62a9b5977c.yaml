@@ -1,5 +1,5 @@
 name: WScript.Shell COM Object
-category: windows-com
+category: windows-com-api
 subcategory: script-execution
 api:
   namespace: WScript.Shell

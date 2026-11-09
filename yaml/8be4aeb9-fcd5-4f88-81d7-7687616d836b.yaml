@@ -1,5 +1,5 @@
 name: Shell.Application COM Object
-category: windows-com
+category: windows-com-api
 subcategory: shell-execution
 api:
   namespace: Shell.Application

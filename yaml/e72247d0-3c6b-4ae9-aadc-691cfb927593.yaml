@@ -1,5 +1,5 @@
 name: kernel32.dll - LoadLibraryA/W
-category: windows-api
+category: windows-native-api
 subcategory: module-loading
 api:
   namespace: kernel32.dll

@@ -1,5 +1,5 @@
 name: PowerShell - Reflection and .NET Abuse
-category: script-engine
+category: script-engine-api
 subcategory: code-execution
 api:
   namespace: PowerShell.exe

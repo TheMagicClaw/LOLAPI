@@ -1,5 +1,5 @@
 name: access.Application COM Object
-category: windows-com
+category: windows-com-api
 subcategory: code-execution
 api:
   namespace: Access.Application

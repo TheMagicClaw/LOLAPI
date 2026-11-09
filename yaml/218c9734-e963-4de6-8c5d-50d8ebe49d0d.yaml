@@ -1,5 +1,5 @@
 name: WMI - Win32_DCOMApplication
-category: windows-com
+category: windows-com-api
 subcategory: lateral-movement
 api:
   namespace: WMI

@@ -1,5 +1,5 @@
 name: Scripting.FileSystemObject COM Object
-category: windows-com
+category: windows-com-api
 subcategory: file-operations
 api:
   namespace: Scripting.FileSystemObject

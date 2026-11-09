@@ -1,5 +1,5 @@
 name: kernel32.dll - CreateRemoteThread
-category: windows-api
+category: windows-native-api
 subcategory: process-injection
 api:
   namespace: kernel32.dll

@@ -1,5 +1,5 @@
 name: MSXML.XMLHTTP.6.0 COM Object
-category: windows-com
+category: windows-com-api
 subcategory: network-communication
 api:
   namespace: MSXML.XMLHTTP
