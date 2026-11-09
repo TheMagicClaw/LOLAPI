@@ -10,7 +10,7 @@ api:
   method: Load
 abuse_scenarios:
 - name: In-memory code execution
-  technique_id: T1027.011
+  technique_id: T1620
   description: Load and execute .NET assembly from memory without touching disk
   code_snippet: var asm = Assembly.Load(assemblyBytes); asm.GetType("Namespace.Class").GetMethod("Method").Invoke(null,
     null);
@@ -40,7 +40,7 @@ risk:
   likelihood_in_real_attacks: 72
 references:
   techniques:
-  - T1027.011
+  - T1620
   tools:
   - Cobalt Strike
   - Empire

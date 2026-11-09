@@ -8,7 +8,7 @@ api:
   documentation: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_reflection
 abuse_scenarios:
 - name: Bypass execution policies
-  technique_id: T1027.011
+  technique_id: T1620
   description: Use .NET reflection to execute code bypassing PowerShell restrictions
   code_snippet: '[Reflection.Assembly]::LoadWithPartialName(''System.Reflection'');
     $a = New-Object System.Reflection.Assembly'
@@ -29,7 +29,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1027.011
+  - T1620
   tools:
   - Cobalt Strike
   - Mimikatz

@@ -8,7 +8,7 @@ api:
   function: OpenProcess / ReadProcessMemory
 abuse_scenarios:
 - name: Credential theft
-  technique_id: T1187
+  technique_id: T1003.001
   description: Read memory of lsass.exe to extract cached credentials
   code_snippet: 'HANDLE hProcess = OpenProcess(PROCESS_VM_READ, FALSE, lsassPID);
 
@@ -36,7 +36,7 @@ risk:
   likelihood_in_real_attacks: 95
 references:
   techniques:
-  - T1187
+  - T1003.001
   threat_actors:
   - APT28
   - APT29

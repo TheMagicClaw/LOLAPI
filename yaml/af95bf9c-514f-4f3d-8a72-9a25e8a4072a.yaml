@@ -9,7 +9,7 @@ api:
   class: Managed Identity
 abuse_scenarios:
 - name: Service account privilege escalation
-  technique_id: T1548.004
+  technique_id: T1552.005
   description: Steal managed identity tokens for privilege escalation
   code_snippet: curl http://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com
   detection_difficulty: easy
@@ -29,7 +29,7 @@ risk:
   likelihood_in_real_attacks: 70
 references:
   techniques:
-  - T1548.004
+  - T1552.005
   tools:
   - Cobalt Strike
   - Mimikatz
