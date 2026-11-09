@@ -24,7 +24,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Office COM object execution
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: low

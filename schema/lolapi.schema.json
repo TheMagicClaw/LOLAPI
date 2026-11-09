@@ -70,6 +70,14 @@
           "type": "string",
           "format": "uri",
           "description": "Link to official documentation"
+        },
+        "function": {
+          "type": "string",
+          "description": "Exported native function name(s), for windows-api entries (alternative to class/method)"
+        },
+        "object": {
+          "type": "string",
+          "description": "COM object / ProgID, for windows-com entries (alternative to class)"
         }
       }
     },
@@ -184,8 +192,8 @@
         },
         "prevalence": {
           "type": "string",
-          "enum": ["novel", "emerging", "widespread"],
-          "description": "How prevalent in the wild"
+          "enum": ["novel", "emerging", "widespread", "medium", "low"],
+          "description": "How prevalent in the wild (low/medium = seen but uncommon)"
         },
         "ease_of_abuse": {
           "type": "string",
@@ -216,6 +224,20 @@
             "type": "string"
           },
           "description": "Known tools that abuse this API"
+        },
+        "threat_actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Threat actor groups known to abuse this API"
+        },
+        "malware_families": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Malware families known to abuse this API"
         },
         "campaigns": {
           "type": "array",

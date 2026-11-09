@@ -31,7 +31,7 @@ detection:
 mitigation:
 - category: policy
   description: Restrict registry write access via GPO
-  feasibility: high
+  feasibility: easy
 - category: monitoring
   description: Monitor Run/RunOnce registry modifications
   feasibility: easy

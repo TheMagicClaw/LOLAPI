@@ -23,9 +23,9 @@ detection:
   effectiveness: high
   notes: Detect C2 communication patterns
 mitigation:
-- category: network
+- category: hardening
   description: Block known C2 domains
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

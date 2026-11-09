@@ -25,7 +25,7 @@ detection:
 mitigation:
 - category: policy
   description: Enforce Windows Defender Credential Guard
-  feasibility: high
+  feasibility: easy
 - category: monitoring
   description: Monitor OpenProcess calls to lsass.exe
   feasibility: easy

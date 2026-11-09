@@ -25,7 +25,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Windows Script Host
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

@@ -25,7 +25,7 @@ detection:
 mitigation:
 - category: policy
   description: Block outbound HTTP for sensitive processes
-  feasibility: high
+  feasibility: easy
 risk:
   severity: high
   prevalence: widespread

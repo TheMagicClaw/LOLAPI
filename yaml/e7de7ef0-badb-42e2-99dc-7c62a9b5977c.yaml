@@ -31,7 +31,7 @@ detection:
 mitigation:
 - category: policy
   description: Disable Script Host
-  feasibility: high
+  feasibility: easy
 risk:
   severity: critical
   prevalence: widespread

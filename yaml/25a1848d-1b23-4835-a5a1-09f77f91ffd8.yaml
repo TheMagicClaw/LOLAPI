@@ -28,7 +28,7 @@ mitigation:
   feasibility: medium
 - category: monitoring
   description: Use centralized logging to prevent local tampering
-  feasibility: high
+  feasibility: easy
 risk:
   severity: medium
   prevalence: low
